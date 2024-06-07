@@ -1,0 +1,104 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items:center;
+    padding: 1.2% 10px;
+    background-color: #000;/*#3c3b3b;/*#004cd4; /* Color principal */
+    color: white;
+    height: 10%;
+}
+
+.left-side,
+.right-side {
+    display: flex;
+    gap: 5rem;
+    padding-right: 2rem;
+}
+.avanzatech{
+    display: flex;
+    background-color: none;
+    margin-right: 5rem;
+
+    
+}
+.avanzatech button{
+    background-color: none;
+}
+.avanzatech button img{
+    width: 10rem;
+    background-color:none;
+}
+
+
+.search-bar {
+    display: flex;
+    background-color: white;
+    border-radius: 25px;
+    align-items: center;
+     /* Permite posicionar el ícono en relación al input */
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+}
+.input-container{
+    flex-grow: 1;
+}
+.search-bar input {
+    width: 85%;
+    margin-left: 0.7rem;
+    outline: none; /* Elimina el contorno predeterminado */
+    border:none; /* Aplica un borde personalizado */
+    box-shadow: none;
+    padding-left: 1rem;
+   /*background-color: rgb(117, 47, 47); /* Fondo del input */
+
+    
+    /* Posicionamiento relativo para el ícono */
+}
+
+.search-icon {
+    margin-left: 1rem;
+    
+    width: 2rem; /* Tamaño del ícono */
+
+    pointer-events: none; /* Evita que el ícono capture eventos de clic */
+}
+
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.left-side button img  {
+    width: 3.5rem; 
+    padding-left: 0px;/* Ajusta el tamaño de acuerdo a tus logos */
+}
+
+.right-side button img  {
+    width: 2rem; 
+    padding-left: 0px;/* Ajusta el tamaño de acuerdo a tus logos */
+}
+
+/* Estilos para los botones de la derecha */
+.right-side button {
+    /*background-color: #111; /* Color de fondo oscuro */
+    color: white; /* Color del texto */
+}
+
+@media screen and (max-width: 768px) {
+   .navbar {
+        flex-direction: column;
+    }
+
+   .left-side,
+   .right-side {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+   .search-bar {
+        width: 100%;
+    }
+}

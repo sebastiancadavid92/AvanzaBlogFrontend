@@ -1,0 +1,13 @@
+.conteiner{
+    background-image: url('../../../assets/background.svg');
+    padding-top: 20%;
+    padding-right:5%;
+}
+.backg{
+    padding-left: 10%;
+    padding-top: 20%;
+}
+
+.myd {
+    width: 55rem;
+  }
