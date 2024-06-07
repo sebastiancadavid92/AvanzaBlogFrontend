@@ -1,0 +1,28 @@
+/* -webkit-tap-highlight-color */
+
+
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-image: url('../../../assets/background.svg');
+    
+}
+.bgwhite {
+    background-color: white;
+    padding-left: 30px;
+    padding-right: 30px;
+    
+  }
+
+
+.titulo{
+    font-weight: 500;
+}
+
+
+
+
+

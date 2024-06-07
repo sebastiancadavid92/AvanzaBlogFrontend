@@ -1,0 +1,247 @@
+
+
+
+    <form  [formGroup]="registerform" (ngSubmit)="save($event)">
+    
+        <div class="space-y-12 ">
+       
+          <div class="bgwhite border-b border-gray pb-12 ">
+            
+            <div>
+                
+            </div>
+            <h1 class=" titulo leading-7 text-indigo-900 pb-10">Registration Form</h1>
+            <h2 class="text-base font-semibold leading-7 text-indigo-900">Welcome to Azatech Blog!!</h2>
+            <p class="mt-1 text-sm leading-6 text-cyan-700">Thank you for joining our community. We're thrilled to have you here.</p>
+            <div class="bg-white border-b border-gray-900/10 pb-12">
+              <h2 class="text-base leading-7 text-indigo-900 pt-5">Personal Information</h2>
+        
+              <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div class="sm:col-span-3">
+                  <label class="block text-sm font-medium leading-6 text-indigo-900">First name</label>
+                  <div class="mt-2" [class.invalid]="firstName.touched && firstName.invalid">
+                    <input type="text" formControlName="first_name" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-indigo-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-indigo-400 focus:ring-2 focus:ring-inset focus:ring-cyan-700 sm:text-sm sm:leading-6">
+                  </div>
+                  <div>
+                    @if(firstName.touched && firstName.invalid){
+                      @if(firstName.hasError('pattern')){
+                        <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> Name can`t have this format</p>
+                      }
+    
+                    }
+                  </div>
+    
+                </div>
+        
+                <div class="sm:col-span-3">
+                  <label class="block text-sm font-medium leading-6 text-indigo-900">Last name</label>
+                  <div class="mt-2" [class.invalid]="lastName.touched && lastName.invalid">
+                    <input type="text" formControlName="last_name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-indigo-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-indigo-400 focus:ring-2 focus:ring-inset focus:ring-cyan-700 sm:text-sm sm:leading-6">
+                  </div>
+                  <div>
+                    @if(lastName.touched && lastName.invalid){
+                      @if(lastName.hasError('pattern')){
+                        <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> Last name can`t have this format</p>
+                      }
+    
+                    }
+                  </div>
+    
+    
+    
+                </div>
+    
+    
+    
+    
+        
+                <div class="sm:col-span-4">
+                  <label class="block text-sm font-medium leading-6 text-indigo-900">Birhdate
+                    <div class="mt-2" >
+                      <input type="date" [attr.max]="maxdate" formControlName="birthdate" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                    </div>
+                    <p class="mt-1 text-xs leading-2 text-cyan-600">To use Avanzatech Blog, you need to be over age.</p>
+                  </label>
+                </div>
+        
+              </div>
+            </div>
+          </div>
+        
+    
+      
+        <div class="bg-white border-b border-gray-900/10 pb-12 text-start">
+    
+          <h2 class="text-base font-semibold leading-7 text-indigo-900 pt-3">Profile Iinformation</h2>
+            
+          <div class="mt-2 grid grid-cols-1 gap-x-6 gap-y-5 sm:grid-cols-6">
+            <div class="sm:col-span-4">
+              <label for="username" class="block text-sm font-medium leading-6 text-indigo-900">Username</label>
+              <div class="mt-2">
+                <div [class.invalid]="userName.touched && userName.invalid" class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-cyan-700 sm:max-w-md" >
+                  <div>
+                    <input id="username" type="text" formControlName="username" autocomplete="username" (blur)="onBlur()" 
+                    class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-indigo-900 placeholder:text-indigo-400 focus:ring-0 sm:text-sm sm:leading-6">
+                  </div>
+                 </div>
+                <div>
+                  @if(userName.touched && userName.invalid){
+                    @if(userName.hasError('usernametook')){
+    
+                      <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> This username is already being used by other user</p>
+                    }
+                    @if(userName.errors!['required']){
+                      <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> This field is required</p>
+                    }
+                    @if(userName.hasError('pattern')){
+    
+                      <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> Username not allow those special caracters</p>
+                    }  
+                  }
+                </div>
+              </div>
+            </div>
+    
+            <div class="sm:col-span-4"  >
+              <label class="block text-sm font-medium leading-6 text-indigo-900">Email Addres</label>
+              <div class="mt-2" [class.invalid]="(email.touched && email.invalid) || email.hasError('emailtook')">
+               <input   formControlName="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-indigo-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-indigo-400 focus:ring-2 focus:ring-inset focus:ring-cyan-700 sm:text-sm sm:leading-6">
+              </div>
+              <div>
+                @if((email.touched && email.invalid)||email.hasError('emailtook'))
+                { @if(email.hasError('emailtook')){
+                  <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> This email has been took by another user.</p>
+                }
+    
+                  @if(email.errors!['pattern']){
+                    <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> Incorrect email Format</p>
+                  }
+                  @if(email.errors!['required']){
+                    <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> This field is required</p>
+                  }
+    
+                  
+                }
+                
+              </div>
+            </div>
+    
+            <div class="sm:col-span-4">
+              <label for="password" class="block text-sm font-medium leading-6 text-indigo-900">Password</label>
+              <div class="mt-2" [class.invalid]="(password.touched && password.invalid) ">
+                <input  id="password"  formControlName="password" type="password" class="block w-full rounded-md border-0 py-1.5 text-indigo-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-indigo-400 focus:ring-2 focus:ring-inset focus:ring-cyan-700 sm:text-sm sm:leading-6">
+              </div>
+              <div>
+                @if(password.touched && password.invalid){
+                  @if(password.errors!['required']){
+                    <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> This field is required</p>
+                  }  
+                }
+    
+              </div>
+            </div>
+    
+            <div class="sm:col-span-4">
+              <label for="passwordconfirmation" class="block text-sm font-medium leading-6 text-indigo-900">Confirm Your Password
+              <div class="mt-2" [class.invalid]="(passwordConfirmation.touched && passwordConfirmation.invalid) || (passwordConfirmation.touched && registerform.hasError('match_password'))">
+                <input formControlName="passwordconfirmation" id="passwordconfirmation"  name="passwordconfirmation" type="password" class="block w-full rounded-md border-0 py-1.5 text-indigo-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-indigo-400 focus:ring-2 focus:ring-inset focus:ring-cyan-700 sm:text-sm sm:leading-6">
+              </div>
+              <div>
+                @if(passwordConfirmation.touched && passwordConfirmation.invalid){
+                  @if(passwordConfirmation.errors!['required']){
+                    <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> This field is required</p>
+                  }  
+                }
+                @if(registerform.hasError('match_password')){
+                  <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> Password and password confirmation must to match</p>
+    
+    
+                }
+              </div>
+            </label>
+            </div>
+    
+          <div class="col-span-full">
+              <label class="block text-sm font-medium leading-6 text-indigo-900">Photo</label>
+              <div class="mt-2 flex items-center gap-x-3">
+                <svg class="h-12 w-12 text-cyan-700" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" clip-rule="evenodd" />
+                </svg>
+                <button type="button" class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-indigo-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">Change</button>
+              </div>
+            </div>
+    
+            <div class="col-span-full">
+              <label class="block text-sm font-medium leading-6 text-indigo-900">Cover photo</label>
+              <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                <div class="text-center">
+                  <svg class="mx-auto h-12 w-12 text-cyan-700" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 012.25-2.25h16.5A2.25 2.25 0 0122.5 6v12a2.25 2.25 0 01-2.25 2.25H3.75A2.25 2.25 0 011.5 18V6zM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0021 18v-1.94l-2.69-2.689a1.5 1.5 0 00-2.12 0l-.88.879.97.97a.75.75 0 11-1.06 1.06l-5.16-5.159a1.5 1.5 0 00-2.12 0L3 16.061zm10.125-7.81a1.125 1.125 0 112.25 0 1.125 1.125 0 01-2.25 0z" clip-rule="evenodd" />
+                  </svg>
+                  <div class="mt-4 flex text-sm leading-6 text-cyan-700">
+                    <label class="relative cursor-pointer rounded-md bg-white font-semibold text-cyan-700 focus-within:outline-none focus-within:ring-2 focus-within:ring-cyan-700 focus-within:ring-offset-2 hover:text-cyan-700">
+                      <span>Upload a file</span>
+                      <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                    </label>
+                    <p class="pl-1">or drag and drop</p>
+                  </div>
+                  <p class="text-xs leading-5 text-cyan-700">PNG, JPG, GIF up to 10MB</p>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+    
+      
+          <div class="bg-white border-b border-gray-900/10 pb-12 ">
+            <div class="mt-10 space-y-10">
+                <div class="mt-6 space-y-6">
+                  <div class="relative flex gap-x-3">
+                    <div class="flex h-6 items-center">
+                      <input type="checkbox" [formControl]="termsConditions"[class.invalid]="(termsConditions.touched && termsConditions.invalid)" class="h-4 w-4 rounded border-gray-300 text-cyan-700 focus:ring-cyan-700">
+                    </div>
+                    <div class="text-sm leading-6">
+                      <label class="font-medium text-indigo-900">Acept terms and conditions</label>
+                      <p class="text-cyan-700">You can check our terms and conditions policy <a href="">here</a>.</p>
+                    </div>
+                  </div>
+    
+                  <div>
+                    @if((termsConditions.touched && termsConditions.invalid)){
+                        <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> Please accept terms and conditions</p>
+                
+    
+                      
+                    }
+    
+                  </div>
+    
+                </div>
+                <div>
+                  @if(this.invalidform){
+                      <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> Please check the form, some fields are not correct</p>
+              
+    
+                    
+                  }
+    
+                </div>
+            </div>
+            <div class="bg-white mt-6 flex items-center justify-end gap-x-4">
+                <button  (click)="cancel($event)" class="rounded-md  px-3 py-2 text-sm font-semibold  text-indigo-900  hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700">Cancel</button>
+                <button type="submit" class="rounded-md bg-cyan-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700">Save</button>
+              </div>
+    
+          </div>
+        </div>
+      
+    
+      </form>
+    
+
+
+
+
+
+

@@ -7,7 +7,7 @@ import { SignupComponent } from '../../../pages/signup/signup.component';
 import {MatdialogComponent} from '../matdialog/matdialog.component'
 import { AuthService } from '../../../services/auth/auth.service';
 import { User, authUser } from '../../models/user';
-import { LoginService } from '../../../services/login.service';
+import { LoginService } from '../../../services/login/login.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-navbar',

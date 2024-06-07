@@ -1,20 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MatdialogComponent } from './matdialog.component';
 
-
-import { NavbarComponent } from './navbar.component';
-
-describe('NavbarComponent', () => {
-  let component: NavbarComponent;
-  let fixture: ComponentFixture<NavbarComponent>;
+describe('MatdialogComponent', () => {
+  let component: MatdialogComponent;
+  let fixture: ComponentFixture<MatdialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavbarComponent]
+      imports: [MatdialogComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(NavbarComponent);
+    fixture = TestBed.createComponent(MatdialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,171 @@
+
+<div>
+<mat-card class="example-card">
+  <mat-card-header>
+    <div class=" items-center ">
+      <div >
+        <mat-card-title >
+          <h1 class="pl-3 block text-indigo-900 title"> {{bPost?.title}}</h1>
+        </mat-card-title> 
+
+
+        <mat-card-subtitle>
+        <div class="flex items-center container">
+          <div class="pr-10 flex items-center gap-3"> 
+
+              <div >
+                  <img class="round-div no-reduce" src="https://picsum.photos/50/50">
+              </div>
+            
+        
+              
+              <div class="pt-2">
+                    <p>{{bPost?.author_name}}</p> 
+              </div>
+              
+        
+          </div>
+
+
+          <div class="pl-10 flex items-center"> 
+            <div>
+              <img src="../../../../assets/icons/date.svg">
+
+
+            </div>
+            
+            <div class="pt-3 pl-3">
+              <p> {{bPost?.timestamp|date:"MMM dd, yyyy 'at' hh:mm" }}</p>
+            </div>
+
+          </div>
+
+          <div class="pl-20 flex items-center">
+            
+            <div>
+              <img src="../../../../assets/icons/team.svg">
+            
+          </div>
+
+          <div class="pl-5">
+            <p class="pt-3"> {{bPost?.team_name}}</p>
+            
+          </div>
+
+             
+          </div>
+
+        </div>
+   
+      
+       </mat-card-subtitle>
+      
+      </div>
+     
+
+    
+    </div>
+ </mat-card-header>
+
+
+
+  <hr>
+    <mat-card-content>
+
+      <div class="pt-3"> 
+          <p class="text-indigo-900">se supone que aaca va el texto {{bPost?.excerpt}}  {{longText}}</p>
+
+      </div>
+    
+
+   
+    </mat-card-content>
+
+    <hr>
+
+<div class="flex flex-row justify-between mr-6">
+
+  <div class="flex fle-row justify-start basic-1/3 gap-5 ">
+
+
+    <div class="flex fle-row  justify-start gap-2 items-center pl-10">
+      <div>
+        <img class="no-reduce2 w-5" src="../../../../assets/icons/likecounter.svg">
+
+      </div>
+      <div>
+        <p class="text-indigo-800 pt-3">{{bPost?.likes}}</p>
+
+      </div>
+
+    </div>
+    
+
+    <div class=" flex flex-row justify-start gap-2 items-center mr-6">
+      <div>
+        <img class="no-reduce2 w-5" src="../../../../assets/icons/commentcounter.svg">
+
+      </div>
+      <div>
+        <p class="text-indigo-800 pt-3">{{bPost?.comments}}</p>
+
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+
+
+  
+  <div class="basic-1/3 flex flex-row justify-end gap-4 mr-4 items-center ">
+
+    <div> 
+      <button >
+        @if(bPost?.liked){
+          <img src="../../../../assets/icons/liked.svg">
+        }
+        @else{
+          <img clas="no-reduce3" src="../../../../assets/icons/noliked.svg">
+        }
+      </button>
+
+    </div>
+
+
+    @if(true){
+
+         <div> 
+      <button >
+
+        <img src="../../../../assets/icons/edit.svg">
+      </button>
+
+    </div>
+
+
+
+   
+    <div> 
+      <button class="w-7">
+
+        <img src="../../../../assets/icons/delete.svg">
+      </button>
+
+    </div>
+    }
+
+  </div>
+
+
+</div>
+
+  </mat-card>
+
+
+
+
+</div>  
+

@@ -1,0 +1,28 @@
+.example-card {
+  margin-left: 18rem;
+  margin-right: 18rem;
+  }
+
+.title{
+  font-weight: 590;
+}
+  
+.round-div {
+  width: 50px; /* Ajusta el tamaño según tus necesidades */
+  height: 50px; /* Asegúrate de que la altura y el ancho sean iguales para una imagen perfectamente redonda */
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+}
+
+.no-reduce {
+  max-width: 100%;
+  height: auto;
+  min-width: 50px; /* Ajusta este valor según el tamaño mínimo deseado */
+}
+.no-reduce2 {
+  max-width: 100%;
+  height: auto;
+  min-width: 30px; /* Ajusta este valor según el tamaño mínimo deseado */
+}
+

@@ -6,19 +6,15 @@ import swal from 'sweetalert2';
 
 import {MatDialogRef} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import {LoginService} from '../../services/login/login.service'
+
 
 import {MatIconModule} from '@angular/material/icon';
 
 import {MatInputModule} from '@angular/material/input';
 import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
-
-//import { MatdialogComponent } from '../../shared/Component/matdialog/matdialog.component';
-
-import {LoginService} from '../../services/login.service'
-
-
 import { Router } from '@angular/router';
-
+import { MatdialogComponent } from '../../shared/Component/matdialog/matdialog.component';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +29,7 @@ export class LoginComponent {
   hide = true;
   invalidForm=true;
   messangeError='';
-  //@Input({required:true}) RefMatDialog?:MatDialogRef<MatdialogComponent>;
+  @Input({required:true}) RefMatDialog?:MatDialogRef<MatdialogComponent>;
   
   constructor(private logiServ:LoginService, private ruter:Router)
     {
@@ -74,8 +70,8 @@ logIn(){
           showConfirmButton: false,
           timer: 1000
         });
-        //this.RefMatDialog?.close()
-        //this.ruter.navigate([''])
+        this.RefMatDialog?.close()
+        this.ruter.navigate([''])
         
         
       },
@@ -121,4 +117,5 @@ clickEvent(event: MouseEvent) {
   this.hide = !this.hide;
   event.stopPropagation();
 }
+
 }
