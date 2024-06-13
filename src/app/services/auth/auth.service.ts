@@ -1,26 +1,36 @@
 import { Injectable } from '@angular/core';
 import { User} from '../../shared/models/user';
 import { jsDocComment } from '@angular/compiler';
+import { BehaviorSubject, fromEvent } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private storageSubject :BehaviorSubject<any>;
+  private sotrageKey='user'
 
-  constructor() { }
+
+  constructor() {
+    const storedValue=localStorage.getItem(this.sotrageKey)
+    this.storageSubject=new BehaviorSubject(storedValue);
+   }
 
   saveUser(userData:any){
-  localStorage.setItem('user',JSON.stringify({
-    username:userData.username,
-    id:userData.id,
-    teamName:userData.team,
-    teamId:userData.team_id,
-  }))
+    const user={ 
+      username:userData.username,
+      id:userData.id,
+      teamName:userData.team,
+      teamId:userData.team_id,}
+
+  localStorage.setItem(this.sotrageKey,JSON.stringify(user));
+  this.storageSubject.next(user);
 
   }
 
   getUser(){
-    const user=localStorage.getItem('user');
+    const user=localStorage.getItem(this.sotrageKey);
+  
     if(user){
       return JSON.parse(user)
     }
@@ -29,14 +39,21 @@ export class AuthService {
 
 
   deleteUser(){
-    localStorage.removeItem('user');
+    localStorage.removeItem(this.sotrageKey);
+    this.storageSubject.next(null)
 
+  }
 
+  wathcUser(){
+
+    return this.storageSubject.asObservable();
   }
 
 
 
 }
+
+
 
 
 

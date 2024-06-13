@@ -25,6 +25,12 @@ export interface User {
   team_id?:number
 }
 
+export interface userList{
+  username:string;
+}
+
+
+
 export interface authUser{
   username:string,
   id:number,
@@ -32,5 +38,4 @@ export interface authUser{
   teamId:number
 
 }
-
 

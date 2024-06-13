@@ -102,3 +102,34 @@ button {
         width: 100%;
     }
 }
+
+.round-div {
+    width: 50px; /* Ajusta el tamaño según tus necesidades */
+    height: 50px; /* Asegúrate de que la altura y el ancho sean iguales para una imagen perfectamente redonda */
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .no-reduce {
+    max-width: 100%;
+    height: auto;
+    min-width: 50px; /* Ajusta este valor según el tamaño mínimo deseado */
+  }
+
+  .fixed-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 20px;
+    padding: 7px 7px;
+    background-color: #d6fc00b7;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fixed-button:hover {
+    background-color: #0057b38c;
+}

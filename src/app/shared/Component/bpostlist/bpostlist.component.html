@@ -1,1 +1,5 @@
-<p>bpostlist works!</p>
+@for (post of bPostList; track post.id){
+<app-bpost [bPost]="post">
+</app-bpost>
+
+}

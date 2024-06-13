@@ -1,0 +1,23 @@
+
+
+
+<div class="bg-white pl-5 pt-3 pb-3 pr-5 flex-col items-center border gap-0 rounded">
+    @for (user of users; track user.username){
+        <div class="flex items-center gap-2">
+            <div >
+                <img class="round-div no-reduce" src="https://picsum.photos/50/50">
+
+            </div>
+            <div>
+                 <p class="style">{{user.username}}</p>
+            </div>
+
+        </div>
+
+   
+    
+
+}
+
+
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { RouterOutlet } from '@angular/router';
 import { MatDialog,MatDialogModule } from '@angular/material/dialog';
@@ -9,6 +9,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 import { User, authUser } from '../../models/user';
 import { LoginService } from '../../../services/login/login.service';
 import Swal from 'sweetalert2';
+import { Observable, Subscriber,Subscription } from 'rxjs';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -16,85 +17,113 @@ import Swal from 'sweetalert2';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit,OnDestroy{
 
-public user:authUser|null=null;
+  public user:authUser|null=null;
+  private Userwathcer?:Subscription;
 
-  constructor(public dialog: MatDialog, private authserv:AuthService, private logService:LoginService) {}
+  constructor(public dialog: MatDialog, private authserv:AuthService, private logService:LoginService) {
 
+
+  }
 
 
   renderDialog(obj:{login:boolean}){
-    
     const dialogRef = this.dialog.open(MatdialogComponent,{data:obj});
-
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
     });
-
     this.user=this.authserv.getUser()
-
-
   }
+
 
   ngOnInit(): void {
     this.user=this.authserv.getUser()
+    this.Userwathcer=this.authserv.wathcUser().subscribe({next:result=>{
+      this.user=this.authserv.getUser();
+    },
+    error:err=>{
+      this.user=null;
+    }
+    });
+  
+  }
+
+
+
+  ngOnDestroy(): void {
+
+    this.Userwathcer?.unsubscribe()
   }
   
 
+  newPost(){
+
+    console.log('New post')
+  }
+
   logoutb(){
+
 
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger"
+        confirmButton: 'btn-success2',
+        cancelButton: "btn-danger"
       },
       buttonsStyling: false
     });
     swalWithBootstrapButtons.fire({
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      text: "Do you really want to logout?",
       icon: "warning",
+      iconColor:"#00f0b7",
       showCancelButton: true,
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "No, cancel!",
+      confirmButtonText: "Yes, Logout",
+      cancelButtonText: "No!",
       reverseButtons: true
-    }).then((result:any) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-        this.logService.logout().subscribe({next:response=>{
-          console.log(response)
-             swalWithBootstrapButtons.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
+
+        this.logService.logout().subscribe(
+         {
+          next:(result)=>{        
+          swalWithBootstrapButtons.fire({
+          text: "logout successful",
+          icon: "success",
+          iconColor:"#00f0b7",
+          showConfirmButton: false,
+          timer: 800,
         });
-       
-        },
-      
-      error:err=>{
-        console.log(err)
-      
-      
-      }})
-      
-
-     
+          },
+          error:(err)=>{
+            swalWithBootstrapButtons.fire({
+              icon: "error",
+              title: "Oops...Something went wrong!",
+              text: err.error,
+            });
+            
+          }
 
 
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire({
-          title: "Cancelled",
-          text: "Your imaginary file is safe :)",
-          icon: "error"
-        });
+         } 
+        )
+
+
+
+
+
       }
     });
 
 
   }
+
+
+
+
+
+
+
 
 }
 

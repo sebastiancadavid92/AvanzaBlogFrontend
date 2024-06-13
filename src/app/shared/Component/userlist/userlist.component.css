@@ -1,0 +1,18 @@
+
+div p.style{
+    @apply pb-1 mb-0 pt-1 mt-0
+  }
+
+.round-div {
+    width: 30px; /* Ajusta el tamaño según tus necesidades */
+    height: 30px; /* Asegúrate de que la altura y el ancho sean iguales para una imagen perfectamente redonda */
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .no-reduce {
+    width: 20px;
+    height: auto;
+  /* Ajusta este valor según el tamaño mínimo deseado */
+  }

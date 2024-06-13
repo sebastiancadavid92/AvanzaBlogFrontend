@@ -71,7 +71,7 @@ logIn(){
           timer: 1000
         });
         this.RefMatDialog?.close()
-        this.ruter.navigate([''])
+        window.location.reload();
         
         
       },

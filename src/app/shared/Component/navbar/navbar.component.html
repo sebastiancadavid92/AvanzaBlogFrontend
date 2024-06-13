@@ -10,7 +10,7 @@
 
     <div class="left-side">
         @if(user){
-         <button><img src="../../../../assets/icons/newpost2.svg" alt="Nuevo Post"></button>
+         <button (click)="newPost()" class="fixed-button"><img class="w-1/2" src="../../../../assets/icons/newpost2.svg" alt="Nuevo Post"></button>
         }
       
     </div>
@@ -24,16 +24,29 @@
         
         
     </div>
-    <div class="right-side">
-      
+    <div class="right-side pl-5">
+      @if(!user){
         <button (click)="renderDialog({login:true})"><img class="right" src="../../../../assets/icons/login.svg" alt="Login"></button>
         <button (click)="renderDialog({login:false})"><img class="right" src="../../../../assets/icons/register.svg" alt="Register"></button>
+      }
+      @else{
+        <div class="flex items-center gap-4">
+            <div>
+                 <img class="round-div no-reduce" src="https://picsum.photos/50/50">
+            </div>
+            <div>
 
-           <button (click)="logoutb()"><img class="right" src="../../../../assets/icons/logout2.svg" alt="Logout"></button> 
-     
-
-
+                <p class="text-white hover:text-blue-600 pt-3 text-right text-xl font-bold"> {{this.user.username}}</p>
+            </div>
+                 
+        </div>
+  
         
+                <button (click)="logoutb()"><img class="right" src="../../../../assets/icons/logout2.svg" alt="Logout"></button> 
+     
+      }
+     
+           
     </div>
 </nav>
 

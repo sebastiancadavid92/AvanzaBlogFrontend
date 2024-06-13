@@ -8,14 +8,14 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { importProvidersFrom } from '@angular/core';
 import{MatNativeDateModule} from '@angular/material/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { loginInterceptor } from './interceptors/login.interceptor';
+import { httInterceptor} from './interceptors/htt.interceptor';
 
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     provideRouter(routes),
-    provideHttpClient(withFetch(),withInterceptors([loginInterceptor])),
+    provideHttpClient(withFetch(),withInterceptors([httInterceptor])),
     importProvidersFrom(MatNativeDateModule), provideAnimationsAsync(),
   ]
 };
