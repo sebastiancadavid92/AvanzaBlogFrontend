@@ -8,13 +8,22 @@ export class PostService {
 
   private listPostUrl=`${environment.URLAPI}post/`;
   //http://localhost:8000/post/21/like/
+  //http://localhost:8000/post/?page=2
   
 
   constructor(private http:HttpClient) { }
 
+  getPost(postId:number){
+    return this.http.get(`${this.listPostUrl}${postId}`,{withCredentials:true})
+  }
+
 
   listPost(){
     return this.http.get(this.listPostUrl,{withCredentials:true})
+  }
+
+  listPostPage(url:string){
+    return this.http.get(url,{withCredentials:true})
   }
 
   like(postId:number|undefined){

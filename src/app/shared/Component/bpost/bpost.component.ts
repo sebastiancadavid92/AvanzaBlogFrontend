@@ -1,4 +1,4 @@
-import { Component,Input, OnDestroy, OnInit, signal  } from '@angular/core';
+import { AfterViewInit, Component,Input, OnChanges, OnDestroy, OnInit, SimpleChanges, signal  } from '@angular/core';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -11,34 +11,32 @@ import { PostService } from '../../../services/post/post.service';
 import swal from 'sweetalert2';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { UserlistComponent } from '../userlist/userlist.component';
+import { Router, RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'app-bpost',
   standalone: true,
-  imports: [MatButtonModule,MatCardModule,CommonModule,OverlayModule,UserlistComponent],
+  imports: [MatButtonModule,MatCardModule,CommonModule,OverlayModule,UserlistComponent,RouterLink],
   templateUrl: './bpost.component.html',
   styleUrl: './bpost.component.css'
 })
-export class BpostComponent implements OnInit, OnDestroy {
+export class BpostComponent implements OnInit, OnDestroy, OnChanges{
 
 
   @Input({required:true}) bPost?:Post;
+  @Input({required:true}) detail:boolean=false;
   user?:authUser;
   private userWatcher?:Subscription;
-  longText='';
+  content='';
+  excerpt='';
   liked=signal(false);
   edit:boolean|undefined=false;
   likes=signal(0);
   isOpenLikes = false;
 
 
-
-
-
-
-
-  constructor(private authServ:AuthService, private postService:PostService){
+  constructor(private authServ:AuthService, private postService:PostService, private router: Router){
   }
 
 
@@ -46,20 +44,28 @@ export class BpostComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.user=this.authServ.getUser()
+    this.user=this.authServ.getUser()
     this.userWatcher=this.authServ.wathcUser().subscribe({next:(result)=>{
       this.user=this.authServ.getUser()
     }})
 
-    this.user=this.authServ.getUser()
-    this.longText=this.bPost?.excerpt??'';
+   
+  }
+
+
+  ngOnChanges(changes: SimpleChanges): void {
+   
+    
+    this.excerpt=this.bPost?.excerpt??'';
     this.liked.set(this.bPost?.liked??false)
+    this.content=this.bPost?.content??'';
     this.edit=this.bPost?.edit
     this.likes.set(this.bPost?.likes??0)
-   
   }
 
   ngOnDestroy(): void {
     this.userWatcher?.unsubscribe()
+  
   }
 
   likeHandler(){
@@ -90,7 +96,9 @@ export class BpostComponent implements OnInit, OnDestroy {
           this.liked.set(true);
         },
         error:(error)=>{
+          console.log(error)
           swal.fire({
+            
             icon: "error",
             title: "Oops...",
             text: JSON.stringify(error.error),
@@ -103,11 +111,13 @@ export class BpostComponent implements OnInit, OnDestroy {
 
   comment(){
     console.log('comentar')
+    this.router.navigate(['post',this.bPost?.id])
 
     }
 
   editer(){
     console.log('editing')
+    this.router.navigate(['edit',this.bPost?.id])
   }
 
   delete(){

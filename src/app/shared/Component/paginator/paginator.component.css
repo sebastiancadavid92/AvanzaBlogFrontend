@@ -1,0 +1,8 @@
+
+  .round-div {
+    width: 30px; /* Ajusta el tamaño según tus necesidades */
+    height: 30px; /* Asegúrate de que la altura y el ancho sean iguales para una imagen perfectamente redonda */
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+  }

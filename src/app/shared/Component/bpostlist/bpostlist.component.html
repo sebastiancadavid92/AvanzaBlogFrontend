@@ -1,5 +1,11 @@
-@for (post of bPostList; track post.id){
-<app-bpost [bPost]="post">
-</app-bpost>
+<div class="flex flex-col items-center">
+  <div>
+    @for (post of bPostList; track post.id){
+    <app-bpost [bPost]="post" [detail]="false"> </app-bpost>
 
-}
+    }
+  </div>
+  <div class="">
+    <app-paginator [nextPage]="nextPage()"  [previousPage]="previousPage()" [initItem]="initItem()" [finalItem]="finalItem()" [totalItem]="totalItem()" (back)="back()" (next)="next()"></app-paginator>
+  </div>
+</div>

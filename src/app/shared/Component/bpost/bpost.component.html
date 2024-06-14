@@ -73,7 +73,15 @@
     <mat-card-content>
 
       <div class="pt-3"> 
-          <p class="text-indigo-900">se supone que aaca va el texto {{bPost?.excerpt}}  {{longText}} @if(this.longText.length>=200){<a href="router" class=" underline text-indigo-500 showmore"> show more..</a>}</p>
+        @if(!detail){
+          <p class="text-indigo-900">{{bPost?.excerpt}} @if(content.length >200){<a routerLink='post/{{bPost?.id}}' class=" underline text-indigo-500 showmore"> show more..</a>}</p>
+
+        }
+
+        @else{
+          <p class="text-indigo-900">{{bPost?.content}} </p>
+
+        }
          
 
       </div>
@@ -107,7 +115,7 @@
 
     <div class=" flex flex-row justify-start gap-2 items-center mr-6">
       <div>
-        <button (click)="comment()" >
+        <button (click)="!detail? comment(): null" >
             <img class="no-reduce2 w-5" src="../../../../assets/icons/commentcounter.svg">
         </button>
         
@@ -140,8 +148,8 @@
       </button>
 
     </div>
-
-    <div>
+    @if(!detail){
+          <div>
       
       <button (click)="comment()"  >
 
@@ -150,6 +158,8 @@
 
     </div>
 
+
+    }
 
     @if(bPost?.edit){
 

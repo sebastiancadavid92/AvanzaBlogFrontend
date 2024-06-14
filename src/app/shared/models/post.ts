@@ -9,6 +9,7 @@ export interface Post
         team_id: number;
         timestamp: string;
         comments: number;
+        content:string;
         likes: number;
         permission: {
             PUBLIC: string;
@@ -19,3 +20,9 @@ export interface Post
         edit: boolean;
         liked:boolean;
     }
+export interface Comment{
+    id: number,
+    username: string,
+    content:string;
+    timestamp: string;
+}

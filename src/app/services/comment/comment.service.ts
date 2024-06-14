@@ -11,6 +11,9 @@ export class CommentService {
   constructor(private http:HttpClient) { }
 
   listComments(postId:number){
-    return this.http.get(`${this.listCommentsUrl}${postId}&page=${1}`)
+    return this.http.get(`${this.listCommentsUrl}${postId}`,)
+  }
+  listCommentsPage(url:string){
+
   }
 }

@@ -15,6 +15,11 @@ export class LikeService {
     return this.http.get(`${this.listLikesUrl}${postId}&page=${1}`)
   }
 
+  listLikePage(url:string){
+    return this.http.get(url,{withCredentials:true})
+  }
+
+
 
 
 }

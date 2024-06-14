@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { MatDialog,MatDialogModule } from '@angular/material/dialog';
 import{MatButtonModule} from '@angular/material/button'
 import { SignupComponent } from '../../../pages/signup/signup.component';
@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit,OnDestroy{
   public user:authUser|null=null;
   private Userwathcer?:Subscription;
 
-  constructor(public dialog: MatDialog, private authserv:AuthService, private logService:LoginService) {
+  constructor(public dialog: MatDialog, private authserv:AuthService, private logService:LoginService,private router:Router) {
 
 
   }
@@ -49,7 +49,9 @@ export class NavbarComponent implements OnInit,OnDestroy{
   
   }
 
-
+  home(){
+    this.router.navigate(['/'])
+  }
 
   ngOnDestroy(): void {
 
