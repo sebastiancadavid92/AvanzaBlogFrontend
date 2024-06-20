@@ -38,4 +38,13 @@ export class PostService {
     return this.http.delete(`${environment.URLAPI}post/${postId}/`,{withCredentials:true})
   }
 
+  commentPost(postId:number|undefined,commentContent:any){
+    if (postId){
+      return this.http.post(`${environment.URLAPI}post/${postId}/comment/`,commentContent,{withCredentials:true})
+    }
+    else{
+      return null
+    }
+  }
+
 }

@@ -44,7 +44,6 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
 
   ngOnInit(): void {
     this.user=this.authServ.getUser()
-    this.user=this.authServ.getUser()
     this.userWatcher=this.authServ.wathcUser().subscribe({next:(result)=>{
       this.user=this.authServ.getUser()
     }})

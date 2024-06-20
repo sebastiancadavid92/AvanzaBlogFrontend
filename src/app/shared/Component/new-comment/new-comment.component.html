@@ -1,0 +1,43 @@
+
+<div class="flex flex-col items-start pb-7">
+
+<div>
+    <h1 class="text-indigo-900 titulo">
+        Add a new comment.
+    </h1>
+
+
+</div>
+
+<div class="self-center ">
+ 
+<div>
+    <textarea [formControl]="commentContent" rows="4" cols="70" [class.invalid]="(commentContent.touched && commentContent.invalid)"  class="culquiera block p-2.5 w-full text-sm text-indigo-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500  dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+ </div> 
+ <div>
+    @if(commentContent.touched && commentContent.invalid){
+        <p class="block text-sm font-medium leading-6 text-red-900 mb-1"> Empty comments are not allowed</p>
+    }
+ </div>
+
+ <div class="flex flex-row justify-end mt-3 gap-2">
+    <div>
+        <button  (click)="cancel($event)" class="rounded-md  px-3 py-2 text-sm font-semibold  text-indigo-900  hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700">Cancel</button>
+              
+
+    </div>
+    <button type="submit" (click)="submit()" class="rounded-md bg-cyan-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700">Save</button>
+             
+
+    <div>
+
+</div>
+
+
+
+ </div>
+   
+
+
+</div>
+</div>

@@ -12,7 +12,7 @@ export class LikeService {
   constructor(private http:HttpClient) { }
 
   listLikes(postId:number){
-    return this.http.get(`${this.listLikesUrl}${postId}&page=${1}`)
+    return this.http.get(`${this.listLikesUrl}${postId}&page=${1}`,{withCredentials:true})
   }
 
   listLikePage(url:string){

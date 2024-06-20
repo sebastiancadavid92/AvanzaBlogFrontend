@@ -95,7 +95,9 @@ export class NavbarComponent implements OnInit,OnDestroy{
           iconColor:"#00f0b7",
           showConfirmButton: false,
           timer: 800,
-        });
+        }).then(
+        ()=>{window.location.reload()}
+        );
           },
           error:(err)=>{
             swalWithBootstrapButtons.fire({

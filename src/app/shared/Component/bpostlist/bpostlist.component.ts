@@ -16,9 +16,9 @@ import { Observer } from 'rxjs';
 
 export class BpostlistComponent implements OnInit{
  public bPostList?:[Post];
- initItem= signal(3)
- finalItem=signal(5)
- totalItem=signal(8)
+ initItem= signal(0)
+ finalItem=signal(0)
+ totalItem=signal(0)
  previousPage=signal('')
  nextPage=signal('')
 

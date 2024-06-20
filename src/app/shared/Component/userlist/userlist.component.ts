@@ -36,35 +36,15 @@ export class UserlistComponent implements OnInit {
  
  }
  
-
-
-
   constructor(private likeService:LikeService,private commentService:CommentService){
   }
 
 
   ngOnInit(): void {
     if (this.likes===true){
-      this.likeService.listLikes(this.postId??0).subscribe( this.observer
-      )
+      this.likeService.listLikes(this.postId??0).subscribe( this.observer)
 
     }
-
-    else if (this.likes===false){
-      this.commentService.listComments(this.postId??0).subscribe(
-        {next:(result:any)=>{
-          console.log(result.results)
-          this.users=result.results
-        
-        },
-      error:(err:any)=>{
-        console.log(err)
-        alert(err)
-      }}
-      )
-
-    }
-    
   }
 
   back(){

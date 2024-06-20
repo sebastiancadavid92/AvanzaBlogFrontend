@@ -8,12 +8,16 @@ import{environment} from'../../../environments/environment'
 export class CommentService {
   private listCommentsUrl=`${environment.URLAPI}comments/?post=`;
 
+
   constructor(private http:HttpClient) { }
 
   listComments(postId:number){
-    return this.http.get(`${this.listCommentsUrl}${postId}`,)
+    return this.http.get(`${this.listCommentsUrl}${postId}`,{withCredentials:true})
   }
   listCommentsPage(url:string){
+    return this.http.get(url,{withCredentials:true})
 
   }
+
+
 }

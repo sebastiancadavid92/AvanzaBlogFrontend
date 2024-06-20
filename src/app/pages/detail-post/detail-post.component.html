@@ -1,14 +1,16 @@
-
 <div class="flex flex-col items-center">
-<div>
+  <div>
     <app-bpost [bPost]="this.bPost" [detail]="true"> </app-bpost>
-</div>
+  </div>
 
-<div>
-
-    <app-comment-list>
-
-    </app-comment-list>
-</div>
+  <div>
+    <app-comment-list [postId]="this.bPost?.id" [comments]="isCommentValid()"> </app-comment-list>
+  </div>
+@if(this.user){
+  <div>
+    <app-new-comment [postId]="this.bPost?.id"></app-new-comment>
+  </div>
+  
+}
 
 </div>

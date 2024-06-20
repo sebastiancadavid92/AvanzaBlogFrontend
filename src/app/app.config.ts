@@ -13,6 +13,7 @@ import { httInterceptor} from './interceptors/htt.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+  
     provideAnimations(),
     provideRouter(routes),
     provideHttpClient(withFetch(),withInterceptors([httInterceptor])),

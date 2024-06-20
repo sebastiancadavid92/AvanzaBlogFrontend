@@ -1,0 +1,17 @@
+.round-div {
+    width: 30px; /* Ajusta el tamaño según tus necesidades */
+    height: 30px; /* Asegúrate de que la altura y el ancho sean iguales para una imagen perfectamente redonda */
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .no-reduce {
+    max-width: 100%;
+    height: auto;
+    min-width: 35px; /* Ajusta este valor según el tamaño mínimo deseado */
+  }
+
+  .user-name{
+    color: #757575;
+  }

@@ -13,16 +13,20 @@
 
 
 </mat-dialog-content>
+<hr>
 <mat-dialog-actions align="end" class="gap-x-4 py-10">
     <div>
         @if(logingFlag){
             
-
-          <p class="text-cyan-700">Dont have an account yet? register <button (click)="toogle()" class=" text-indigo-400 hover:text-red-900 buttons "> here</button> please</p>   
+<div>
+          <p class="text-cyan-700 margin">Dont have an account yet? register <button (click)="toogle()" class=" text-indigo-400 hover:text-red-900 buttons "> here</button> please</p>   
+  </div>      
         }
         @else{
-            <p class="text-cyan-700"> Already have an account? login <button (click)="toogle()" class=" text-indigo-400 hover:text-red-900 buttons"> here</button> please</p>   
-        }
+          <div>
+            <p class="text-cyan-700 margin"> Already have an account? login <button (click)="toogle()" class=" text-indigo-400 hover:text-red-900 buttons"> here</button> please</p>   
+        </div>
+          }
 
 
 
@@ -30,21 +34,5 @@
  <!--[mat-dialog-close]="true" cdkFocusInitial>Install</button>-->
 </mat-dialog-actions>
 
-
-
-@if(false) {
-    <h1>funcionaaaa</h1> 
-    <h1 mat-dialog-title class="text-base font-semibold leading-7 text-indigo-900">Registration Form{{dat.login}} </h1>
-    
-      <mat-dialog-content class="mat-typography">
-    
-    <button  class="rounded-md  px-3 py-2 text-sm font-semibold  text-indigo-900  hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700">Cancel</button>
-    <button   class="rounded-md bg-cyan-700 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700">Save</button>
-    </mat-dialog-content>
-    <mat-dialog-actions align="end" class="gap-x-4 py-10">
-      <button class="rounded-md  px-3 py-2 text-sm font-semibold  text-indigo-900  hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700"mat-dialog-close>Cancel</button>
-      <button class="rounded-md bg-cyan-700  py-2 px-3  my-3 text-sm font-semibold text-white shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700" [mat-dialog-close]="true" cdkFocusInitial>Install</button>
-    </mat-dialog-actions>
-    }
     
     

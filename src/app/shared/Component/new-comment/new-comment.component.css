@@ -1,0 +1,16 @@
+.titulo{
+    font-weight: 700;
+    
+}
+
+.comment{
+    width: 40rem;
+    height: 12rem;
+}
+
+.invalid{
+    border-color: brown;
+    border-width: 0.17rem;
+    border-radius: 0.5rem;
+    box-shadow: 2px 5px 4px rgba(0, 0, 0, 0.3) ;
+}

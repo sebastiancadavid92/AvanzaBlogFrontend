@@ -1,2 +1,20 @@
-<p>comment-list works!</p>
-<app-comment></app-comment>
+
+    <div class="flex flex-col items-center">
+        <div>
+            @for (comment of commentList; track comment.id){
+                <app-comment [comment]="comment"></app-comment>
+              
+                  }
+        </div>
+
+
+        @if (comments) {
+
+         <div class="">
+          <app-paginator [nextPage]="nextPage()"  [previousPage]="previousPage()" [initItem]="initItem()" [finalItem]="finalItem()" [totalItem]="totalItem()" (back)="back()" (next)="next()"></app-paginator>
+        </div> 
+        }
+
+      </div>
+      
+
