@@ -3,10 +3,13 @@ import { getCookie} from 'typescript-cookie'
 export const httInterceptor: HttpInterceptorFn = (req, next) => {
   
   const csrftoken=getCookie('csrftoken');
+  let headersReq = req.headers;
+  if(csrftoken){
+    headersReq = headersReq.append('X-CSRFToken', csrftoken)
+  }
   const clonedRequest=req.clone({
-    setHeaders:{
-      'X-CSRFToken':csrftoken? csrftoken:''
-    }
+    headers: headersReq
   })
+  console.log(clonedRequest);
   return next(clonedRequest);
 };

@@ -74,12 +74,14 @@
 
       <div class="pt-3"> 
         @if(!detail){
-          <p class="text-indigo-900">{{bPost?.excerpt}} @if(content.length >200){<a routerLink='post/{{bPost?.id}}' class=" underline text-indigo-500 showmore"> show more..</a>}</p>
+          <div class="text-indigo-900"[innerHTML]="bPost?.html?.substring(0,200)"></div>
+
+          <p >@if(content.length >200){<a routerLink='post/{{bPost?.id}}' class=" underline text-indigo-500 showmore"> show more..</a>}</p>
 
         }
 
         @else{
-          <p class="text-indigo-900">{{bPost?.content}} </p>
+          <p class="text-indigo-900">{{bPost?.html}} </p>
 
         }
          

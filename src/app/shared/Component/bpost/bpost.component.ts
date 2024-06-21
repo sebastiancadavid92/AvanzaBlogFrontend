@@ -30,6 +30,7 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
   private userWatcher?:Subscription;
   content='';
   excerpt='';
+  html='';
   liked=signal(false);
   edit:boolean|undefined=false;
   likes=signal(0);
@@ -53,13 +54,12 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
 
 
   ngOnChanges(changes: SimpleChanges): void {
-   
-    
     this.excerpt=this.bPost?.excerpt??'';
     this.liked.set(this.bPost?.liked??false)
     this.content=this.bPost?.content??'';
     this.edit=this.bPost?.edit
     this.likes.set(this.bPost?.likes??0)
+    this.html=this.bPost?.html??'';
   }
 
   ngOnDestroy(): void {

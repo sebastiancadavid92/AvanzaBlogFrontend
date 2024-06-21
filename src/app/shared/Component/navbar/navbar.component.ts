@@ -59,9 +59,18 @@ export class NavbarComponent implements OnInit,OnDestroy{
   }
   
 
+  isNewPost(){
+    return this.router.isActive('newpost',{
+      paths: 'exact',
+      queryParams: 'exact',
+      fragment: 'ignored',
+      matrixParams: 'ignored'
+    })
+  }
+
   newPost(){
 
-    console.log('New post')
+   this.router.navigate(['newpost'])
   }
 
   logoutb(){
@@ -96,7 +105,7 @@ export class NavbarComponent implements OnInit,OnDestroy{
           showConfirmButton: false,
           timer: 800,
         }).then(
-        ()=>{window.location.reload()}
+        ()=>{this.router.navigate(['/'])}
         );
           },
           error:(err)=>{

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import{environment} from'../../../environments/environment'
+import { newPost } from '../../shared/models/post';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,6 +18,9 @@ export class PostService {
     return this.http.get(`${this.listPostUrl}${postId}`,{withCredentials:true})
   }
 
+  newPost(data:newPost){
+    return this.http.post(this.listPostUrl,data,{withCredentials:true})
+  }
 
   listPost(){
     return this.http.get(this.listPostUrl,{withCredentials:true})

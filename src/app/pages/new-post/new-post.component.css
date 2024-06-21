@@ -3,7 +3,12 @@
     font-weight: 500;
     margin-left: 0rem;
 }
-
+form {
+    align-items: center;
+    padding: 50px;
+    background-image: url('../../../assets/background.svg');
+    
+}
 .general{
     margin-top: 1rem;
     margin-left: 1rem;

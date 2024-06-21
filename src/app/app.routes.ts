@@ -27,8 +27,11 @@ export const routes: Routes = [
             {
                 path:'post/:id',
                 component:DetailPostComponent
+            },
+            {
+                path:'newpost',
+                component: NewPostComponent
             }
-
 
 
         ]
@@ -37,10 +40,7 @@ export const routes: Routes = [
 
     },
 
-    {
-        path:'newpost',
-        component: NewPostComponent
-    }
+
 
 
 ];

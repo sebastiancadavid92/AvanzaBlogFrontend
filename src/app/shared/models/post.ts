@@ -10,6 +10,7 @@ export interface Post
         timestamp: string;
         comments: number;
         content:string;
+        html:string
         likes: number;
         permission: {
             PUBLIC: string;
@@ -19,7 +20,21 @@ export interface Post
         },
         edit: boolean;
         liked:boolean;
+        
     }
+
+
+export interface newPost{
+    title: string;
+    content:string|undefined;
+    html:string|undefined
+    permission: {
+        PUBLIC: string;
+        AUTHOR:string;
+        TEAM:string;
+        AUTHENTICATED:string;
+    }
+}
 export interface Comment{
     id: number,
     username: string,

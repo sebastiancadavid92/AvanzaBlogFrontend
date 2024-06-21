@@ -9,7 +9,7 @@
     </div>
 
     <div class="left-side">
-        @if(user){
+        @if(user && !isNewPost()){
          <button (click)="newPost()" class="fixed-button"><img class="w-1/2" src="../../../../assets/icons/newpost2.svg" alt="Nuevo Post"></button>
         }
       
