@@ -6,6 +6,7 @@ import{HomeComponent} from './pages/home/home.component'
 import { EditPostComponent } from './pages/edit-post/edit-post.component';
 import { DetailPostComponent } from './pages/detail-post/detail-post.component';
 import { NewPostComponent } from './pages/new-post/new-post.component';
+import { PostFormComponent } from './shared/Component/post-form/post-form.component';
 
 
 export const routes: Routes = [
@@ -35,10 +36,15 @@ export const routes: Routes = [
 
 
         ]
+
+
         
 
 
     },
+    {path:'postform',
+        component:PostFormComponent
+    }
 
 
 

@@ -1,0 +1,26 @@
+.titulo{
+
+    font-weight: 500;
+    margin-left: 0rem;
+}
+
+.general{
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+.subtitle{
+    margin-left: 0rem;
+
+}
+.h2{
+    margin-bottom: 0;
+}
+
+.field-name{
+font-weight: 550;
+font-size: medium;
+}
+.text{
+    width: 25rem;
+    height: 40rem;
+}
