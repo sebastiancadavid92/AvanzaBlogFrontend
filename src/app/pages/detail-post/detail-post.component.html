@@ -1,7 +1,23 @@
 <div class="flex flex-col items-center">
-  <div>
+
+  <div class="flex flex-col">
+
+ <div> 
+
+     <div class="self-start ">
+
+  </div>
+      <button (click)="back()" >
+      <img class="fixed-button" src="../../../assets/icons/backpage.svg" alt="">
+    </button>
     <app-bpost [bPost]="this.bPost" [detail]="true"> </app-bpost>
   </div>
+
+
+</div>
+
+
+ 
 
   <div>
     <app-comment-list [postId]="this.bPost?.id" [comments]="isCommentValid()"> </app-comment-list>

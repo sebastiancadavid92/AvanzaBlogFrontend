@@ -16,6 +16,8 @@ export class NewCommentComponent implements OnChanges{
 
   commentContent=new FormControl<string>('',[Validators.required])
 
+  invalid:boolean=false;
+
   constructor(private postService:PostService){}
 
 
@@ -40,7 +42,8 @@ export class NewCommentComponent implements OnChanges{
        
     }
     else{
-      this.commentContent.markAsTouched({onlySelf:true})
+      this.invalid=true
+    
     }
    
   

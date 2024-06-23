@@ -1,1 +1,26 @@
-<p>edit-post works!</p>
+<div class="flex justify-center form">
+    <div class="self-center">
+      <div class="bg-white">
+        <div >
+          <h1 class="titulo text-indigo-900">Edit Post Form</h1>
+        </div>
+        <div class="subtitle border-b border-gray">
+          <div>
+            <h2 class="text-indigo-900 h2">Update your post here!!</h2>
+          </div>
+          <div>
+            <p class="text-cyan-700">
+              Here you can share your thoughs and ideas with your friends and the
+              rest of the comunity
+            </p>
+          </div>
+        </div>
+        </div>
+    @if(postDetail){
+
+       <app-post-form [postUpLoadData]="postDetail" [postId]="this.id" (validData)="editPost($event)"></app-post-form> 
+    }
+    
+    </div>
+    
+    </div>

@@ -163,30 +163,36 @@
 
     }
 
-    @if(bPost?.edit){
 
-    <div> 
-      <button (click)="editer()" >
-
-        <img src="../../../../assets/icons/edit.svg">
-      </button>
-
-    </div>
-
-
-
-   
-    <div> 
-      <button (click)="delete()" class="w-7">
-
-        <img src="../../../../assets/icons/delete.svg">
-      </button>
-
-    </div>
-    }
 
  
 }
+@if(bPost?.edit){
+
+  <div> 
+    <button (click)="editer()" >
+
+      <img src="../../../../assets/icons/edit.svg">
+    </button>
+
+  </div>
+
+
+
+ 
+  <div> 
+    <button (click)="delete()" class="w-7">
+
+      <img src="../../../../assets/icons/delete.svg">
+    </button>
+
+  </div>
+  }
+
+
+
+
+
  </div>
 
 

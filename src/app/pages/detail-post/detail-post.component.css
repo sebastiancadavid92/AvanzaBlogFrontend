@@ -1,0 +1,17 @@
+
+.fixed-button {
+    position: fixed;
+    top: 6rem;
+    left: 20px;
+    width: 3rem;
+    padding: 7px 7px;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.fixed-button:hover {
+    background-color: #0057b38c;
+}

@@ -9,6 +9,7 @@ import { NewCommentComponent } from '../../shared/Component/new-comment/new-comm
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 import { authUser } from '../../shared/models/user';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detail-post',
@@ -22,9 +23,14 @@ export class DetailPostComponent implements OnInit{
   bPost?:Post;
   user?:authUser;
 
-  constructor(private route:ActivatedRoute, private postService:PostService,private router:Router, private authService:AuthService){
+  constructor(private location:Location,private route:ActivatedRoute, private postService:PostService,private router:Router, private authService:AuthService){
     
 
+  }
+
+  back(){
+    this.location.back();
+    return
   }
 
 

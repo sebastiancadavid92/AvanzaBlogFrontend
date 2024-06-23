@@ -1,117 +1,104 @@
-
 <div class="flex justify-center h-auto myd ">
 
-    <div class="flex-1 backg items-center justify-center bg-green-300 w-1/2 h-70  ">
-      <div class="w-full md:w-full ">
+  <div class="flex-1 backg items-center justify-center bg-green-300 w-1/2 h-70  ">
+    <div class="w-full md:w-full ">
 
-        <object data="../../../assets/icons/home2.svg" type="image/svg+xml" class="w-1/2 h-auto"></object>
-  
-      </div>
-      <div class=" pl-10 bg-green-300  w-1/2">
+      <object data="../../../assets/icons/home2.svg" type="image/svg+xml" class="w-1/2 h-auto"></object>
+
+    </div>
+    <div class=" pl-10 bg-green-300  w-1/2">
       <div>
         <h1 class="text-indigo-900 mb-0">Welcome Back </h1>
         <p class="text-indigo-900"> we are happy to see you again!!</p>
       </div>
     </div>
 
-    </div>
+  </div>
 
 
-    <div class=" conteiner w-1/2  h-70 " >
-      <form [formGroup]="loginForm" class="w-full h-full "  (ngSubmit)="send($event)">
-        <div class="sm:col-span-4 felx items-center justify-center ml-20 mr-20">
-          <div class="items-center justify-center">
-            <div class="flex items-center justify-center">
-              <div>
-                <label 
-                  class="block text-sm font-medium leading-6 text-indigo-900 text-center"
-                  >Email Addres</label
-                >
-              </div>
+  <div class=" conteiner w-1/2  h-70 ">
+    <form [formGroup]="loginForm" class="w-full h-full " (ngSubmit)="send($event)">
+      <div class="sm:col-span-4 felx items-center justify-center ml-20 mr-20">
+        <div class="items-center justify-center">
+          <div class="flex items-center justify-center">
+            <div>
+              <label class="block text-sm font-medium leading-6 text-indigo-900 text-center">Email Addres</label>
             </div>
-            <div
-              class="mt-2"
-              [class.invalid]="
+          </div>
+          <div class="mt-2" [class.invalid]="
                 (email.touched && email.invalid) || email.hasError('emailtook')
-              "
-            >
-              <input
-                formControlName="email"
-                type="email"
-                autocomplete="email"
-                class=" text-center block w-full rounded-md border-0 py-1.5 text-indigo-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-indigo-400 focus:ring-2 focus:ring-inset focus:ring-cyan-700 sm:text-sm sm:leading-6"
-              />
+              ">
+            <input formControlName="email" type="email" autocomplete="email"
+              class=" text-center block w-full rounded-md border-0 py-1.5 text-indigo-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-indigo-400 focus:ring-2 focus:ring-inset focus:ring-cyan-700 sm:text-sm sm:leading-6" />
+          </div>
+          <div>
+            @if((email.touched && email.invalid)) {
+            @if(email.errors!['pattern']){
+            <p class="block text-sm font-medium leading-6 text-red-900 mb-1">
+              Incorrect email Format
+            </p>
+            } @if(email.errors!['required']){
+            <p class="block text-sm font-medium leading-6 text-red-900 mb-1">
+              This field is required
+            </p>
+            } }
+          </div>
+        </div>
+
+        <div class="sm:col-span-4">
+
+
+          <label class="block text-sm font-medium text-center leading-6 text-indigo-900">Password</label>
+          <div class="flex p-1 bg-white ring-1 rounded-md ring-inset ring-gray-300"[class.invalid]="password.touched && password.invalid">
+            <div  class="">
+              <input [type]="hide ? 'password' : 'text'" formControlName="password"
+                class="w-full h-full sm:text-sm text-indigo-900 text-center focus:ring-2 focus:ring-inset focus:ring-cyan-700">
             </div>
             <div>
-              @if((email.touched && email.invalid)) {
-              @if(email.errors!['pattern']){
-              <p class="block text-sm font-medium leading-6 text-red-900 mb-1">
-                Incorrect email Format
-              </p>
-              } @if(email.errors!['required']){
-              <p class="block text-sm font-medium leading-6 text-red-900 mb-1">
-                This field is required
-              </p>
-              } }
-            </div>
-          </div>
-
-          <div class="sm:col-span-4">
-
-            
-            <label
- 
-              class="block text-sm font-medium text-center leading-6 text-indigo-900"
-              >Password</label
-            >
-            <div class="flex"
-            >
-            <div [class.invalid]="password.touched && password.invalid"  class=" block w-full        sm:leading-6"
-            >
-            <input [type]="hide ? 'password' : 'text'" formControlName="password"   class="w-full h-full ring-1 ring-inset ring-gray-300 sm:text-sm rounded-md border-none text-indigo-900 text-center focus:border-none"
-            >
-          </div>
-            <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            </div>
-            <div>
-              @if(password.touched && password.invalid){
-              @if(password.errors!['required']){
-              <p class="block text-sm font-medium leading-6 text-red-900 mb-1">
-                This field is required
-              </p>
-              } }
-            </div>
           </div>
-
-          <div class="py-2">
-            @if(!invalidForm){
+          </div>
+          <div>
+            @if(password.touched && password.invalid){
+            @if(password.errors!['required']){
             <p class="block text-sm font-medium leading-6 text-red-900 mb-1">
-              Pleace check fields. something is not corect.
+              This field is required
             </p>
-           }
+            } }
           </div>
-
-          <div class="py-2">
-            @if(messangeError!==''){
-            <p class="block text-sm font-medium leading-6 text-red-900 mb-1">
-              {{messangeError}}
-            </p>
-           }
-          </div>
-
-
-          
-
-          <div class="bg-white mt-6 flex items-center justify-end gap-x-4 mr-20 mb-10 w-full ">
-            
-            <button  (click)="logIn()"  class="w-full rounded-md bg-green-300 px-3 py-2 text-sm font-semibold text-indigo-900 shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700">login</button>
-          </div>
-
-
         </div>
-      </form>
-    </div>
+
+        <div class="py-2">
+          @if(!invalidForm){
+          <p class="block text-sm font-medium leading-6 text-red-900 mb-1">
+            Pleace check fields. something is not corect.
+          </p>
+          }
+        </div>
+
+        <div class="py-2">
+          @if(messangeError!==''){
+          <p class="block text-sm font-medium leading-6 text-red-900 mb-1">
+            {{messangeError}}
+          </p>
+          }
+        </div>
+
+
+
+
+        <div class="bg-white mt-6 flex items-center justify-end gap-x-4 mr-20 mb-10 w-full ">
+
+          <button (click)="logIn()"
+            class="w-full rounded-md bg-green-300 px-3 py-2 text-sm font-semibold text-indigo-900 shadow-sm hover:bg-cyan-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-700">login</button>
+        </div>
+
+
+      </div>
+    </form>
+  </div>
 
 </div>

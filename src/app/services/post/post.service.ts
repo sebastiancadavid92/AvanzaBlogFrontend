@@ -15,11 +15,14 @@ export class PostService {
   constructor(private http:HttpClient) { }
 
   getPost(postId:number){
-    return this.http.get(`${this.listPostUrl}${postId}`,{withCredentials:true})
+    return this.http.get(`${this.listPostUrl}${postId}`,{withCredentials:true}) 
   }
 
   newPost(data:newPost){
     return this.http.post(this.listPostUrl,data,{withCredentials:true})
+  }
+  updatePost(data:newPost,postId:number|null){
+    return this.http.patch(`${this.listPostUrl}${postId}/`,data,{withCredentials:true})
   }
 
   listPost(){

@@ -41,7 +41,7 @@ export class PostFormComponent implements OnInit, OnChanges{
   
   @Input({required:true}) postUpLoadData!: newPost|undefined;
   @Output() validData=new EventEmitter();
-  @Input() postId:number|undefined;
+  @Input() postId:number|null=null;
 
   constructor(private categoryPermissionService:PermissioncategoryService, 
               private fb:FormBuilder,
@@ -56,6 +56,7 @@ ngOnChanges(changes: SimpleChanges): void {
       return
     }
     this.newPostForm=this.fb.group({
+      
       title: new FormControl(this.postUpLoadData.title, [Validators.required]),
       content: new FormControl(this.postUpLoadData.html),
       categoriSelector:this.fb.array([])
