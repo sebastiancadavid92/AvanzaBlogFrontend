@@ -35,6 +35,7 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
   edit:boolean|undefined=false;
   likes=signal(0);
   isOpenLikes = false;
+  url=''
 
 
   constructor(private authServ:AuthService, private postService:PostService, private router: Router){
@@ -49,7 +50,16 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
       this.user=this.authServ.getUser()
     }})
 
+    this.url=this.random()
+
    
+
+  }
+  random(){
+    let num=Math.floor(Math.random() * 10) + 10
+
+    return`https://picsum.photos/id/${num}/50/50?random`
+
   }
 
 

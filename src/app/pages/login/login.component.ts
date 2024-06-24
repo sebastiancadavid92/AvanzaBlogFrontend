@@ -44,9 +44,6 @@ export class LoginComponent {
 
   }
 
-  send(event:Event){
-
-  }
 
   get email(){
     return this.loginForm.get('email')!
@@ -85,6 +82,7 @@ logIn(){
         else if (err.status == 403){
           this.messangeError='Logged in users, are not allow to use this action'
         }
+
         else{
           this.messangeError='Unspected error. contact to client service'
 
@@ -93,7 +91,7 @@ logIn(){
         swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Something went wrong!",
+          text: this.messangeError,
         });
 
 

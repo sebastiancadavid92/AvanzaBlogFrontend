@@ -10,6 +10,6 @@ export const httInterceptor: HttpInterceptorFn = (req, next) => {
   const clonedRequest=req.clone({
     headers: headersReq
   })
-  console.log(clonedRequest);
+
   return next(clonedRequest);
 };

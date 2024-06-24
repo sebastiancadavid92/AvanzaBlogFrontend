@@ -6,7 +6,7 @@
   @for (user of users; track user.username){
   <div class="flex items-center gap-2">
     <div>
-      <img class="round-div no-reduce" src="https://picsum.photos/50/50" />
+      <img class="round-div no-reduce" [src]="this.random()" />
     </div>
     <div>
       <p class="style">{{ user.username }}</p>

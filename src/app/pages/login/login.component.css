@@ -11,3 +11,11 @@
 .myd {
     width: 55rem;
   }
+
+  .pass{
+    height: 3rem;
+  }
+
+  .pass:focus-within{
+    @apply ring-2 ring-inset ring-cyan-700
+  }

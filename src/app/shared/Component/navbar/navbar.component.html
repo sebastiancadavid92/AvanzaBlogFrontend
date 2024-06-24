@@ -1,61 +1,88 @@
 <!DOCTYPE html>
 <html lang="es">
-
-
-<nav class="navbar">
-
-    <div class="avanzatech"><button (click)="home()"><img id="avanzatech" src="../../../../assets/icons/home2.svg" alt="Logo Home"></button>
-
+  <nav class="bg-black bar pt-2 pb-2 pl-5 pr-5">
+    <div class="">
+      @if(user && !isNewPost()){
+      <button (click)="newPost()" class="fixed-button">
+        <img
+          class=""
+          src="../../../../assets/icons/newpost2.svg"
+          alt="Nuevo Post"
+        />
+      </button>
+      }
     </div>
+    <div class="flex flex-row justify-between items-center">
+      <div class="le home ">
+        <button (click)="home()">
+          <img
+            class="home"
+            src="../../../../assets/icons/home2.svg"
+            alt="Logo Home"
+          />
+        </button>
+      </div>
 
-    <div class="left-side">
-        @if(user && !isNewPost()){
-         <button (click)="newPost()" class="fixed-button"><img class="w-1/2" src="../../../../assets/icons/newpost2.svg" alt="Nuevo Post"></button>
-        }
-      
-    </div>
-    <div class="search-bar">
+      <div class="flex flex-row ri pl-5 self-end">
+        @if(!user){
+
+      <div class="flex flex-row items-center gap-10">
         <div>
-        <img src="../../../../assets/icons/search2.svg" alt="Lupa de búsqueda" class="search-icon">
+          <button (click)="renderDialog({ login: true })">
+            <img
+              class="logout"
+              src="../../../../assets/icons/login.svg"
+              alt="Login"
+            />
+          </button>
         </div>
-        <div class="input-container">
-         <input type="text" placeholder="Buscar..." class="text-indigo-900">   
+        <div>
+          <button (click)="renderDialog({ login: false })">
+            <img
+              class="register"
+              src="../../../../assets/icons/register.svg"
+              alt="Register"
+            />
+          </button>
         </div>
-        
-        
-    </div>
-    <div class="right-side pl-5">
-      @if(!user){
-        <button (click)="renderDialog({login:true})"><img class="right" src="../../../../assets/icons/login.svg" alt="Login"></button>
-        <button (click)="renderDialog({login:false})"><img class="right" src="../../../../assets/icons/register.svg" alt="Register"></button>
-      }
-      @else{
+
+</div>
+
+
+
+        } @else{
+        <div class="flex flex-row gap-8 items-center">
         <div class="flex items-center gap-4">
-            <div>
-                 <img class="round-div no-reduce" src="https://picsum.photos/50/50">
-            </div>
-            <div>
-
-                <p class="text-white hover:text-blue-600 pt-3 text-right text-xl font-bold"> {{this.user.username}}</p>
-            </div>
-                 
+          <div>
+            <img
+              class="round-div no-reduce"
+              src="https://picsum.photos/50/50"
+            />
+          </div>
+          <div>
+            <p
+              class="text-white hover:text-blue-600 pt-3 text-right text-xl font-bold"
+            >
+              {{ this.user.username }}
+            </p>
+          </div>
         </div>
-  
-        
-                <button (click)="logoutb()"><img class="right" src="../../../../assets/icons/logout2.svg" alt="Logout"></button> 
-     
-      }
-     
-           
+
+        <div>
+          <button (click)="logoutb()">
+            <img
+              class="no-reduce logout"
+              src="../../../../assets/icons/logout2.svg"
+              alt="Logout"
+            />
+          </button>
+        </div>
+      </div>
+
+        }
+      </div>
     </div>
-</nav>
+  </nav>
 
-
-
-  
-<router-outlet />
-
-
-
-
+  <router-outlet />
 </html>

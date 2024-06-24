@@ -105,7 +105,9 @@ export class NavbarComponent implements OnInit,OnDestroy{
           showConfirmButton: false,
           timer: 800,
         }).then(
-        ()=>{this.router.navigate(['/'])}
+        ()=>{this.router.navigate(['/'])
+          window.location.reload()
+        }
         );
           },
           error:(err)=>{

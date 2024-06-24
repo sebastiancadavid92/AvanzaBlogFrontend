@@ -14,7 +14,7 @@
           <div class="pr-10 flex items-center gap-3"> 
 
               <div >
-                  <img class="round-div no-reduce" src="https://picsum.photos/50/50">
+                  <img class="round-div no-reduce" [src]="this.url">
               </div>
             
         
@@ -72,18 +72,24 @@
   <hr>
     <mat-card-content>
 
-      <div class="pt-3"> 
+      <div class="pt-3 pb-2"> 
         @if(!detail){
-          <div class="text-indigo-900"[innerHTML]="bPost?.html?.substring(0,200)"></div>
-
-          <p >@if(content.length >200){<a routerLink='post/{{bPost?.id}}' class=" underline text-indigo-500 showmore"> show more..</a>}</p>
+         
+        @if(content.length >200){ 
+          <div class="text-indigo-900"[innerHTML]="bPost?.html?.substring(0,230)"></div>
+          <p ><a routerLink='post/{{bPost?.id}}' class=" underline text-indigo-500 showmore"> show more..</a></p>
 
         }
 
         @else{
-          <p class="text-indigo-900">{{bPost?.html}} </p>
+          <div class="text-indigo-900" [innerHTML]="bPost?.html">{{bPost?.html}} </div>
+          
 
         }
+      }
+      @else{
+        <div class="text-indigo-900" [innerHTML]="bPost?.html">{{bPost?.html}} </div>
+      }
          
 
       </div>

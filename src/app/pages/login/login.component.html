@@ -17,7 +17,7 @@
 
 
   <div class=" conteiner w-1/2  h-70 ">
-    <form [formGroup]="loginForm" class="w-full h-full " (ngSubmit)="send($event)">
+    <form [formGroup]="loginForm" class="w-full h-full " (ngSubmit)="logIn()">
       <div class="sm:col-span-4 felx items-center justify-center ml-20 mr-20">
         <div class="items-center justify-center">
           <div class="flex items-center justify-center">
@@ -48,11 +48,11 @@
         <div class="sm:col-span-4">
 
 
-          <label class="block text-sm font-medium text-center leading-6 text-indigo-900">Password</label>
-          <div class="flex p-1 bg-white ring-1 rounded-md ring-inset ring-gray-300"[class.invalid]="password.touched && password.invalid">
+          <p class="block text-sm font-medium text-center leading-6 text-indigo-900">Password</p>
+          <div class="flex flex-row items-center p-1 bg-white ring-1 rounded-md ring-inset ring-gray-300 pass"[class.invalid]="password.touched && password.invalid">
             <div  class="">
               <input [type]="hide ? 'password' : 'text'" formControlName="password"
-                class="w-full h-full sm:text-sm text-indigo-900 text-center focus:ring-2 focus:ring-inset focus:ring-cyan-700">
+                class="w-full h-full sm:text-sm text-indigo-900 text-center ">
             </div>
             <div>
             <button mat-icon-button matSuffix (click)="clickEvent($event)" [attr.aria-label]="'Hide password'"

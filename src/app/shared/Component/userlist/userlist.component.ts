@@ -20,7 +20,7 @@ export class UserlistComponent implements OnInit {
   totalItem=signal(8)
   previousPage=signal('')
   nextPage=signal('')
- 
+  url=''
   observer={next:(result:any)=>{
    this.initItem.set(((result.current-1)*15)+1)
    this.totalItem.set(result.count)
@@ -45,6 +45,8 @@ export class UserlistComponent implements OnInit {
       this.likeService.listLikes(this.postId??0).subscribe( this.observer)
 
     }
+
+    this.url=this.random()
   }
 
   back(){
@@ -56,7 +58,12 @@ export class UserlistComponent implements OnInit {
    }
     
   
-  
+   random(){
+    let num=Math.floor(Math.random() * 15) + 10
+    console.log(num)
+    return`https://picsum.photos/id/${num}/50/50?random`
+
+  }
   
 
 
