@@ -3,6 +3,7 @@ import { ActivatedRoute, ActivatedRouteSnapshot, Router, RouterLinkActive } from
 import { PostFormComponent } from '../../shared/Component/post-form/post-form.component';
 import { PostService } from '../../services/post/post.service';
 import { Post, newPost } from '../../shared/models/post';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-post',
@@ -24,10 +25,33 @@ export class EditPostComponent implements OnInit{
   ngOnInit(): void {
     this.routherParam.paramMap.subscribe(params=>{
       this.id=Number(params.get('id'));
-      this.postService.getPost(this.id).subscribe((result:any)=>{
-        this.postDetail=result
-        console.log(this.postDetail)
+      this.postService.getPost(this.id).subscribe({next:(result:any)=>{
+        if(result.edit){
+          this.postDetail=result
+        }
+        else{
+          this.postDetail=undefined
+          Swal.fire({
+          title:'Te post Cant be updated',
+          icon:'error'
+        }).then(()=>{
+          this.router.navigate(['/'])
+        })
+
+        }
+        
+      },
+    error:(err)=>{
+      Swal.fire({
+        title:'ooops',
+        icon:'error',
+        text:`an error has corrued: ${JSON.stringify(err)}`
+      }).then(()=>{
+        this.router.navigate(['/'])
       })
+
+
+    }})
     })
 
     
@@ -36,14 +60,29 @@ export class EditPostComponent implements OnInit{
   editPost(event:any){
     this.postService.updatePost(event,this.id).subscribe({
       next:()=>{
-        console.log('updated!')
-        console.log(this.id)
-        this.router.navigate([`post/${this.id}`])
+        Swal.fire({
+          title:'Te post has been updated',
+          icon:'success'
+        }).then(()=>{
+          this.router.navigate([`post/${this.id}`])
+        })
+ 
+        
         
 
       },
       error:(error)=>{
-        console.log(error)
+        if(error.status==403){
+
+          Swal.fire({
+          title:'something went wrong',
+          icon:'error'
+        }).then(()=>{
+          this.router.navigate(['/'])
+        })
+        
+        }
+
       }
     })
 

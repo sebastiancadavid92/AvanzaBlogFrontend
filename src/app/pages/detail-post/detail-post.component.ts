@@ -20,7 +20,7 @@ import { Location } from '@angular/common';
 })
 export class DetailPostComponent implements OnInit{
   id:number|null=null;
-  bPost?:Post;
+  bPost:Post|undefined=undefined;
   user?:authUser;
 
   constructor(private location:Location,private route:ActivatedRoute, private postService:PostService,private router:Router, private authService:AuthService){
@@ -29,7 +29,7 @@ export class DetailPostComponent implements OnInit{
   }
 
   back(){
-    this.location.back();
+    this.router.navigate(['/']);
     return
   }
 

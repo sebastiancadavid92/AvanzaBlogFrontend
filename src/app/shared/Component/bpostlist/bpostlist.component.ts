@@ -3,7 +3,7 @@ import { BpostComponent } from '../bpost/bpost.component';
 import {Post}from'../../models/post'
 import { PostService } from '../../../services/post/post.service';
 import { PaginatorComponent } from '../paginator/paginator.component';
-import { Observer } from 'rxjs';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-bpostlist',
   standalone: true,
@@ -15,7 +15,7 @@ import { Observer } from 'rxjs';
 
 
 export class BpostlistComponent implements OnInit{
- public bPostList?:[Post];
+ public bPostList?:[Post]|undefined=undefined;
  initItem= signal(0)
  finalItem=signal(0)
  totalItem=signal(0)
@@ -28,14 +28,37 @@ export class BpostlistComponent implements OnInit{
   this.finalItem.set(((result.current-1)*10)+result.results.length)
   this.previousPage.set(result.previous)
   this.nextPage.set(result.next)
-  this.bPostList=result.results 
+  if(this.totalItem()==0){
+    this.bPostList=undefined
+  }
+  else{
+    this.bPostList=result.results
+  }
+  
   window.scrollTo({
     top: 0,
     behavior: 'smooth' // Esto hace que el desplazamiento sea suave
   })
 },
 error:(err:any)=>{
-  alert('err')
+  if(err.status==0){
+    Swal.fire({
+      title:'Error',
+      icon:'error',
+      text:'We couldnt stablish conection to the server , try again later'
+    })
+  }
+
+  else{
+    Swal.fire({
+      title:'Error',
+      icon:'error',
+      text:'We couldnt stablish conection to the server , try again later'
+    })
+
+  }
+  
+  
 }
 
 }
@@ -61,4 +84,8 @@ error:(err:any)=>{
  }
   
 
+ postDelete(){
+  window.location.reload()
+
+ }
 }

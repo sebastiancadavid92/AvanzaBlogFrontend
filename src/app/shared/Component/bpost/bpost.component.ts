@@ -1,4 +1,4 @@
-import { AfterViewInit, Component,Input, OnChanges, OnDestroy, OnInit, SimpleChanges, signal  } from '@angular/core';
+import { AfterViewInit, Component,ElementRef,EventEmitter,Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, ViewChild, signal  } from '@angular/core';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
@@ -6,12 +6,12 @@ import {Post}from'../../models/post'
 import { authUser } from '../../models/user';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../services/auth/auth.service';
-import { Subscription } from 'rxjs';
 import { PostService } from '../../../services/post/post.service';
-import swal from 'sweetalert2';
+import swal, { SweetAlertResult } from 'sweetalert2';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { UserlistComponent } from '../userlist/userlist.component';
 import { Router, RouterLink } from '@angular/router';
+
 
 
 @Component({
@@ -21,13 +21,13 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './bpost.component.html',
   styleUrl: './bpost.component.css'
 })
-export class BpostComponent implements OnInit, OnDestroy, OnChanges{
+export class BpostComponent implements OnInit, OnChanges{
 
 
   @Input({required:true}) bPost?:Post;
   @Input({required:true}) detail:boolean=false;
+  @Output() deletePost = new EventEmitter<number>()
   user?:authUser;
-  private userWatcher?:Subscription;
   content='';
   excerpt='';
   html='';
@@ -35,46 +35,63 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
   edit:boolean|undefined=false;
   likes=signal(0);
   isOpenLikes = false;
-  url=''
+  url='';
+  id!:number|undefined;
+  showMore:boolean=true;
+  @ViewChild('contentContainer', { static: true }) contentContainer?: ElementRef;
 
 
-  constructor(private authServ:AuthService, private postService:PostService, private router: Router){
-  }
+
+  constructor(
+    private authServ:AuthService, 
+    private postService:PostService, 
+    private router: Router
+  ){ }
 
 
 
 
   ngOnInit(): void {
     this.user=this.authServ.getUser()
-    this.userWatcher=this.authServ.wathcUser().subscribe({next:(result)=>{
-      this.user=this.authServ.getUser()
-    }})
-
     this.url=this.random()
-
-   
-
   }
+
   random(){
     let num=Math.floor(Math.random() * 10) + 10
-
     return`https://picsum.photos/id/${num}/50/50?random`
-
   }
 
 
   ngOnChanges(changes: SimpleChanges): void {
+    if(this.bPost){
     this.excerpt=this.bPost?.excerpt??'';
     this.liked.set(this.bPost?.liked??false)
     this.content=this.bPost?.content??'';
     this.edit=this.bPost?.edit
     this.likes.set(this.bPost?.likes??0)
     this.html=this.bPost?.html??'';
-  }
+    this.id=this.bPost?.id;
+    if(this.contentContainer){
+      if (this.detail){
+        this.contentContainer.nativeElement.innerHTML =this.bPost?.html;
+        this.showMore=false
+      }
+      else{
+        if(this.content.length <200){
+          this.contentContainer.nativeElement.innerHTML =this.bPost?.html;
+          this.showMore=false
+        }
+        else{
+          this.showMore=true;
+          this.contentContainer.nativeElement.innerHTML =this.bPost?.html.substring(0,200);
+        }
 
-  ngOnDestroy(): void {
-    this.userWatcher?.unsubscribe()
-  
+      }
+    }
+
+    }
+    
+
   }
 
   likeHandler(){
@@ -86,11 +103,10 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
           this.likes.update(value=>value-1)
         },
         error:(error)=>{
-          console.log(error)
           swal.fire({
             icon: "error",
             title: "Oops...",
-            text: JSON.stringify(error.error),
+            text: JSON.stringify(error),
           })
 
         }
@@ -105,12 +121,11 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
           this.liked.set(true);
         },
         error:(error)=>{
-          console.log(error)
           swal.fire({
             
             icon: "error",
             title: "Oops...",
-            text: JSON.stringify(error.error),
+            text: JSON.stringify(error),
           })
 
         }
@@ -119,13 +134,11 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
     }
 
   comment(){
-    console.log('comentar')
     this.router.navigate(['post',this.bPost?.id])
 
     }
 
   editer(){
-    console.log('editing')
     this.router.navigate(['edit',this.bPost?.id])
   }
 
@@ -148,28 +161,34 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
       confirmButtonText: "Yes",
       cancelButtonText: "No!",
       reverseButtons: true
-    }).then((result:any) => {
+    }).then((result:SweetAlertResult) => {
       if (result.isConfirmed) {
+
 
         this.postService.deletePost(this.bPost?.id).subscribe(
          {
           next:(result)=>{   
+
           swalWithBootstrapButtons.fire({
           text: " Post deleted successful",
           icon: "success",
           iconColor:"#00f0b7",
           showConfirmButton: false,
           timer: 800,
-        }).then(()=>window.location.reload());
+        }).then(()=>{
+          
+          this.deletePost.emit(this.id)
+  
+        });
 
           },
           error:(err)=>{
             swalWithBootstrapButtons.fire({
               icon: "error",
               title: "Oops...Something went wrong!",
-              text: err.error,
+              text: JSON.stringify(err),
             });
-            
+        
           }
 
 
@@ -179,28 +198,6 @@ export class BpostComponent implements OnInit, OnDestroy, OnChanges{
         
       }
     });
-
-    
-
-
-
-/*     this.postService.deletePost(this.bPost?.id).subscribe(
-      {next:(result)=>{
-        window.location.reload()
-
-      },
-      error:(err)=>{
-        swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: JSON.stringify(err.error),
-        })
-
-      }
-
-      }
-    ) */
-
 
   }
     

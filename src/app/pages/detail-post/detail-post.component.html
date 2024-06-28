@@ -1,3 +1,5 @@
+@if(bPost){
+
 <div class="flex flex-col items-center">
 
   <div class="flex flex-col">
@@ -19,14 +21,17 @@
 
  
 
-  <div>
-    <app-comment-list [postId]="this.bPost?.id" [comments]="isCommentValid()"> </app-comment-list>
+
+</div>
+}
+
+@if(bPost){
+  <div class="">
+    <app-comment-list [postId]="this.bPost.id" [comments]="isCommentValid()"> </app-comment-list>
   </div>
 @if(this.user){
   <div>
-    <app-new-comment [postId]="this.bPost?.id"></app-new-comment>
+    <app-new-comment [postId]="this.bPost.id"></app-new-comment>
   </div>
   
-}
-
-</div>
+}}

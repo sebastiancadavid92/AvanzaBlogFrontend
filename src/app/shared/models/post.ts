@@ -27,7 +27,7 @@ export interface Post
 export interface newPost{
     title: string;
     content:string|undefined;
-    html:string|undefined
+    html?:string;
     permission: {
         PUBLIC: string;
         AUTHOR:string;

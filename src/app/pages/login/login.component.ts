@@ -66,9 +66,10 @@ logIn(){
           title: "New user registered successfully",
           showConfirmButton: false,
           timer: 1000
-        });
-        this.RefMatDialog?.close()
+        }).then( ()=>{this.RefMatDialog?.close()
         window.location.reload();
+        }       )
+
         
         
       },

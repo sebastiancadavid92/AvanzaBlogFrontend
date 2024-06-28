@@ -35,7 +35,7 @@ export class SignupComponent {
     this.registerform=new FormGroup(
       {
         username: new FormControl('', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._-]+$/)]),
-        email: new FormControl('',[Validators.required,Validators.pattern(/^[a-z_0-9-.]+@[a-z]+.com$/)],[RegisterValidators.emailAsyncValidator(this.SignupServ)]),
+        email: new FormControl('',[Validators.required,Validators.pattern(/^[a-z_0-9-.]+@[a-z]+\.[a-z]+$/)],[RegisterValidators.emailAsyncValidator(this.SignupServ)]),
         first_name: new FormControl('',[Validators.pattern( /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$/)]),
         last_name: new FormControl('',Validators.pattern( /^[a-zA-ZñÑáéíóúÁÉÍÓÚüÜ]+$/)),
         birthdate: new FormControl(null),

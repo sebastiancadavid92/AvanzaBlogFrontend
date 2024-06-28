@@ -1,3 +1,6 @@
+
+    @if(postDetail){
+
 <div class="flex justify-center form">
     <div class="self-center">
       <div class="bg-white">
@@ -16,11 +19,11 @@
           </div>
         </div>
         </div>
-    @if(postDetail){
+
 
        <app-post-form [postUpLoadData]="postDetail" [postId]="this.id" (validData)="editPost($event)"></app-post-form> 
-    }
+    
     
     </div>
     
-    </div>
+    </div>}

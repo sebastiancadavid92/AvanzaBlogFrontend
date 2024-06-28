@@ -13,7 +13,7 @@ import { PaginatorComponent } from '../paginator/paginator.component';
 export class UserlistComponent implements OnInit {
   @Input({required:true}) likes?:boolean;
   @Input({required:true}) postId?:number;
-  users?:[userList];
+  users?:[userList]|undefined;
  
   initItem= signal(3)
   finalItem=signal(5)
@@ -27,7 +27,14 @@ export class UserlistComponent implements OnInit {
    this.finalItem.set(((result.current-1)*15)+result.results.length)
    this.previousPage.set(result.previous)
    this.nextPage.set(result.next)
-   this.users=result.results 
+   if(this.totalItem()==0){
+    this.users=undefined
+   }
+   else{
+       this.users=result.results 
+   }
+
+
 
  },
  error:(err:any)=>{
@@ -60,7 +67,6 @@ export class UserlistComponent implements OnInit {
   
    random(){
     let num=Math.floor(Math.random() * 15) + 10
-    console.log(num)
     return`https://picsum.photos/id/${num}/50/50?random`
 
   }

@@ -1,229 +1,188 @@
-
 <div class="mb-5">
-<mat-card class="example-card border-t-4">
-  <mat-card-header>
-    <div class=" items-center ">
-      <div >
-        <mat-card-title >
-          <h1 class="pl-3 block text-indigo-900 title"> {{bPost?.title}}</h1>
-        </mat-card-title> 
+  <mat-card class="example-card border-t-4">
+    <mat-card-header>
+      <div class="items-center">
+        <div>
+          <mat-card-title>
+            <h1 data-testid="title" class="pl-3 block text-indigo-900 title">
+              {{ bPost?.title }}
+            </h1>
+          </mat-card-title>
 
+          <mat-card-subtitle>
+            <div class="flex items-center container">
+              <div class="pr-10 flex items-center gap-3">
+                <div>
+                  <img
+                    data-testid="image"
+                    class="round-div no-reduce"
+                    [src]="this.url"
+                  />
+                </div>
 
-        <mat-card-subtitle>
-        <div class="flex items-center container">
-          <div class="pr-10 flex items-center gap-3"> 
-
-              <div >
-                  <img class="round-div no-reduce" [src]="this.url">
+                <div class="pt-2">
+                  <p data-testid="authorName">{{ bPost?.author_name }}</p>
+                </div>
               </div>
-            
-        
-              
-              <div class="pt-2">
-                    <p>{{bPost?.author_name}}</p> 
+
+              <div class="pl-10 flex items-center">
+                <div>
+                  <img
+                    class="no-reduce2"
+                    src="../../../../assets/icons/date.svg"
+                  />
+                </div>
+
+                <div class="pt-3 pl-3">
+                  <p data-testid="date">
+                    {{ bPost?.timestamp | date : "MMM dd, yyyy 'at' hh:mm" }}
+                  </p>
+                </div>
               </div>
-              
-        
-          </div>
 
+              <div class="pl-20 flex items-center">
+                <div>
+                  <img
+                    class="no-reduce2"
+                    src="../../../../assets/icons/team.svg"
+                  />
+                </div>
 
-          <div class="pl-10 flex items-center "> 
-            <div>
-              <img class="no-reduce2" src="../../../../assets/icons/date.svg">
-
-
+                <div class="pl-5">
+                  <p data-testid="teamName" class="pt-3">
+                    {{ bPost?.team_name }}
+                  </p>
+                </div>
+              </div>
             </div>
-            
-            <div class="pt-3 pl-3">
-              <p> {{bPost?.timestamp|date:"MMM dd, yyyy 'at' hh:mm" }}</p>
-            </div>
-
-          </div>
-
-          <div class="pl-20 flex items-center">
-            
-            <div>
-              <img class="no-reduce2" src="../../../../assets/icons/team.svg">
-            
-          </div>
-
-          <div class="pl-5">
-            <p class="pt-3"> {{bPost?.team_name}}</p>
-            
-          </div>
-
-             
-          </div>
-
+          </mat-card-subtitle>
         </div>
-   
-      
-       </mat-card-subtitle>
-      
       </div>
-     
+    </mat-card-header>
 
-    
-    </div>
- </mat-card-header>
-
-
-
-  <hr>
+    <hr />
     <mat-card-content>
-
-      <div class="pt-3 pb-2"> 
-        @if(!detail){
-         
-        @if(content.length >200){ 
-          <div class="text-indigo-900"[innerHTML]="bPost?.html?.substring(0,230)"></div>
-          <p ><a routerLink='post/{{bPost?.id}}' class=" underline text-indigo-500 showmore"> show more..</a></p>
-
-        }
-
-        @else{
-          <div class="text-indigo-900" [innerHTML]="bPost?.html">{{bPost?.html}} </div>
-          
+      <div class="pt-3 pb-2">
+        <div #contentContainer></div>
+        @if(this.showMore){
+        <p data-testid="showMore">
+          <a
+            routerLink="post/{{ bPost?.id }}"
+            class="underline text-indigo-500 showmore"
+          >
+            show more..</a
+          >
+        </p>
 
         }
-      }
-      @else{
-        <div class="text-indigo-900" [innerHTML]="bPost?.html">{{bPost?.html}} </div>
-      }
-         
-
       </div>
-    
-
-   
     </mat-card-content>
 
-    <hr>
+    <hr />
 
-<div class="flex flex-row justify-between mr-6">
-
-  <div class="flex fle-row  basic-1/3 gap-5 ">
-
-
-    <div class="flex fle-row   gap-2 items-center pl-10">
-      <div>
-        <button (click)="isOpenLikes =!isOpenLikes" type="button" cdkOverlayOrigin #triggerLikes="cdkOverlayOrigin">
-          <img class="no-reduce2 w-5" src="../../../../assets/icons/likecounter.svg">
-        </button>
-       
-
-      </div>
-      <div>
-        <p class="text-indigo-800 pt-3">{{likes()}}</p>
-
-      </div>
-
-    </div>
-    
-
-    <div class=" flex flex-row justify-start gap-2 items-center mr-6">
-      <div>
-        <button (click)="!detail? comment(): null" >
-            <img class="no-reduce2 w-5" src="../../../../assets/icons/commentcounter.svg">
-        </button>
-        
-
-      </div>
-      <div>
-        <p class="text-indigo-800 pt-3">{{bPost?.comments}}</p>
-
-      </div>
-
-
-
-    </div>
-
-
-  </div>
-
-  <div class="basic-1/3 flex flex-row gap-4 mr-4 items-center ">
-  @if(user){
-
-
-    <div> 
-      <button (click)="likeHandler()">
-        @if(liked()){
-          <img clas="no-reduce3" src="../../../../assets/icons/liked.svg">
-        }
-        @else{
-          <img clas="no-reduce3" src="../../../../assets/icons/noliked.svg">
-        }
-      </button>
-
-    </div>
-    @if(!detail){
+    <div class="flex flex-row justify-between mr-6">
+      <div class="flex fle-row basic-1/3 gap-5">
+        <div class="flex fle-row gap-2 items-center pl-10">
           <div>
-      
-      <button (click)="comment()"  >
+            @if(likes()!=0){
 
-        <img src="../../../../assets/icons/newcomment.svg">
-      </button>
+            <button
+              data-testid="likeOpener"
+              (click)="isOpenLikes = !isOpenLikes"
+              type="button"
+              cdkOverlayOrigin
+              #triggerLikes="cdkOverlayOrigin"
+            >
+              <img
+                class="no-reduce2 w-5"
+                src="../../../../assets/icons/likecounter.svg"
+              />
+            </button>
+            <ng-template
+              cdkConnectedOverlay
+              [cdkConnectedOverlayOrigin]="triggerLikes"
+              [cdkConnectedOverlayOpen]="isOpenLikes"
+              (overlayOutsideClick)="isOpenLikes = false"
+            >
+              <app-userlist [likes]="true" [postId]="bPost?.id"> </app-userlist>
+            </ng-template>
 
+            } @else{
+            <img
+              class="no-reduce2 w-5"
+              src="../../../../assets/icons/likecounter.svg"
+            />
+            }
+          </div>
+          <div>
+            <p class="text-indigo-800 pt-3">{{ likes() }}</p>
+          </div>
+        </div>
+
+        <div class="flex flex-row justify-start gap-2 items-center mr-6">
+          <div>
+            @if(!detail){
+
+            <button
+              data-testid="toComment"
+              (click)="!detail ? comment() : null"
+            >
+              <img
+                class="no-reduce2 w-5"
+                src="../../../../assets/icons/commentcounter.svg"
+              />
+            </button>
+            } @else{
+            <img
+              class="no-reduce2 w-5"
+              src="../../../../assets/icons/commentcounter.svg"
+            />
+            }
+          </div>
+          <div>
+            <p data-testid="comments" class="text-indigo-800 pt-3">
+              {{ bPost?.comments }}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="basic-1/3 flex flex-row gap-4 mr-4 items-center">
+        @if(user){
+
+        <div>
+          <button data-testid="LikeButton" (click)="likeHandler()">
+            @if(liked()){
+            <img clas="no-reduce3" src="../../../../assets/icons/liked.svg" />
+            } @else{
+            <img clas="no-reduce3" src="../../../../assets/icons/noliked.svg" />
+            }
+          </button>
+        </div>
+        @if(!detail){
+        <div>
+          <button data-testid="newCommentButton" (click)="comment()">
+            <img src="../../../../assets/icons/newcomment.svg" />
+          </button>
+        </div>
+
+        } } @if(bPost?.edit){
+
+        <div>
+          <button (click)="editer()">
+            <img src="../../../../assets/icons/edit.svg" />
+          </button>
+        </div>
+
+        <div>
+          <button (click)="delete()" class="w-7">
+            <img src="../../../../assets/icons/delete.svg" />
+          </button>
+        </div>
+        }
+      </div>
+
+      <!-- This template displays the overlay content and is connected to the button -->
     </div>
-
-
-    }
-
-
-
- 
-}
-@if(bPost?.edit){
-
-  <div> 
-    <button (click)="editer()" >
-
-      <img src="../../../../assets/icons/edit.svg">
-    </button>
-
-  </div>
-
-
-
- 
-  <div> 
-    <button (click)="delete()" class="w-7">
-
-      <img src="../../../../assets/icons/delete.svg">
-    </button>
-
-  </div>
-  }
-
-
-
-
-
- </div>
-
-
-
-<!-- This template displays the overlay content and is connected to the button -->
-
-</div>
-
   </mat-card>
-
-
-
-
-</div>  
-
-
-
-<ng-template
-  cdkConnectedOverlay
-  [cdkConnectedOverlayOrigin]="triggerLikes"
-  [cdkConnectedOverlayOpen]="isOpenLikes"
-  (overlayOutsideClick)="isOpenLikes=false"
->
- <app-userlist [likes]="true" [postId]="bPost?.id">    </app-userlist>
-</ng-template>
-
-
-
+</div>

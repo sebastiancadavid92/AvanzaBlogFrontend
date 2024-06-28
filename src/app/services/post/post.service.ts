@@ -54,4 +54,15 @@ export class PostService {
     }
   }
 
+  deleteCommentfromPost(postId:number|undefined,commentId:number|undefined){
+
+    if(postId && commentId){
+      return this.http.delete(`${environment.URLAPI}post/${postId}/comment/${commentId}/`,{withCredentials:true})
+    }
+    else{
+      return null
+    }
+
+  }
+
 }

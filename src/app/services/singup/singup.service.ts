@@ -28,8 +28,5 @@ export class SingupService {
     return this.http.get<{usernametook:boolean}>(`${this.checkusernamelurl}${username}/`)
   }
 
-
-
-
   
 }

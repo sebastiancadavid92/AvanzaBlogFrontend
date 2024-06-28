@@ -1,4 +1,5 @@
-<div
+@if (users!=undefined){
+  <div
   class="bg-white pl-5 pt-3 pb-3 pr-5 flex flex-col items-center border gap-0 rounded"
 >
 
@@ -15,6 +16,7 @@
 
   }
 </div>
+
   <div class=" pt-2">
     <app-paginator
       [nextPage]="nextPage()"
@@ -26,5 +28,7 @@
       (next)="next()"
     ></app-paginator>
   </div>
-</div>
 
+
+</div>
+}

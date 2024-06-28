@@ -56,7 +56,6 @@ ngOnChanges(changes: SimpleChanges): void {
       return
     }
     this.newPostForm=this.fb.group({
-      
       title: new FormControl(this.postUpLoadData.title, [Validators.required]),
       content: new FormControl(this.postUpLoadData.html),
       categoriSelector:this.fb.array([])
@@ -172,7 +171,7 @@ publish(){
   const postData:newPost={
     title:this.title.value,
     content:this.quilleditor?.quillEditor.getText(),
-    html:this.quilleditor?.quillEditor.getSemanticHTML(),
+    html:this.content.value,
     permission:{
       AUTHENTICATED:'',
       TEAM:'',
