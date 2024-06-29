@@ -52,6 +52,8 @@ export class BpostComponent implements OnInit, OnChanges{
 
 
   ngOnInit(): void {
+  
+
     this.user=this.authServ.getUser()
     this.url=this.random()
   }

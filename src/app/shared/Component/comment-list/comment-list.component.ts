@@ -16,7 +16,7 @@ import { PaginatorComponent } from '../paginator/paginator.component';
 export class CommentListComponent implements OnInit,OnChanges{
   @Input({required:true}) postId:number|undefined;
   @Input({required:true}) comments:boolean|undefined;
-  commentList?:[Comment];
+  commentList?:[Comment]|undefined=undefined;
 
   initItem= signal(0)
   finalItem=signal(0)

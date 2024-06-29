@@ -115,7 +115,7 @@
             }
           </div>
           <div>
-            <p class="text-indigo-800 pt-3">{{ likes() }}</p>
+            <p data-testid="likesNumber" class="text-indigo-800 pt-3">{{ likes() }}</p>
           </div>
         </div>
 
@@ -151,11 +151,11 @@
         @if(user){
 
         <div>
-          <button data-testid="LikeButton" (click)="likeHandler()">
+          <button data-testid="LikeButton2" (click)="likeHandler()">
             @if(liked()){
-            <img clas="no-reduce3" src="../../../../assets/icons/liked.svg" />
+            <img data-testid="LikeImg2" class="no-reduce3" src="../../../../assets/icons/liked.svg" />
             } @else{
-            <img clas="no-reduce3" src="../../../../assets/icons/noliked.svg" />
+            <img data-testid="LikeImg" class="no-reduce3" src="../../../../assets/icons/noliked.svg" />
             }
           </button>
         </div>
@@ -169,13 +169,13 @@
         } } @if(bPost?.edit){
 
         <div>
-          <button (click)="editer()">
+          <button data-testid="editButton" (click)="editer()">
             <img src="../../../../assets/icons/edit.svg" />
           </button>
         </div>
 
         <div>
-          <button (click)="delete()" class="w-7">
+          <button data-testid="deleteButton" (click)="delete()" class="w-7">
             <img src="../../../../assets/icons/delete.svg" />
           </button>
         </div>
