@@ -23,7 +23,9 @@ export class DetailPostComponent implements OnInit{
   bPost:Post|undefined=undefined;
   user?:authUser;
 
-  constructor(private location:Location,private route:ActivatedRoute, private postService:PostService,private router:Router, private authService:AuthService){
+  constructor(private location:Location,
+    private route:ActivatedRoute, private postService:PostService,
+    private router:Router, private authService:AuthService){
     
 
   }

@@ -17,7 +17,7 @@ import { newPost } from '../../models/post';
   styleUrl: './post-form.component.css'
 })
 export class PostFormComponent implements OnInit, OnChanges{
-  newPostForm?:FormGroup;
+  newPostForm!:FormGroup;
   categories!:[category];
   permissions!:[permission];
   invalidform=false;
@@ -65,27 +65,27 @@ ngOnChanges(changes: SimpleChanges): void {
 }
 
 ngOnInit(): void {
+  
   this.categoryPermissionService.permissions().subscribe({next:(result)=>{
     this.permissions=result
 
   },
   error:(error)=>{
-    console.log(error)
+
     Swal.fire({
       
       icon: "error",
       title: "Oops...",
-      text: error.status==0? "The API is not resonding" :JSON.stringify(error),
+      text: JSON.stringify(error),
     })
 
   }
 })
 
   this.categoryPermissionService.categories().subscribe({next:(result)=>{
+ 
     this.categories=result
     this.initCategories(this.categories.length)
-
-
   },
   error:(error)=>{
     console.log(error)
@@ -93,7 +93,7 @@ ngOnInit(): void {
       
       icon: "error",
       title: "Oops...",
-      text: error.status==0? "The API is not resonding" :JSON.stringify(error),
+      text:JSON.stringify(error),
     })
   }
 })

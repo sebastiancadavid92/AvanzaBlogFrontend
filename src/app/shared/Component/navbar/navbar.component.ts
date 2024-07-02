@@ -20,7 +20,7 @@ import { Observable, Subscriber,Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit,OnDestroy{
 
   public user:authUser|null=null;
-  private Userwathcer?:Subscription;
+  public Userwathcer?:Subscription;
 
   constructor(public dialog: MatDialog,
      private authserv:AuthService, 
@@ -49,7 +49,6 @@ export class NavbarComponent implements OnInit,OnDestroy{
       this.user=null;
     }
     });
-  
   }
 
   home(){
@@ -72,7 +71,6 @@ export class NavbarComponent implements OnInit,OnDestroy{
   }
 
   newPost(){
-
    this.router.navigate(['newpost'])
   }
 
@@ -97,6 +95,7 @@ export class NavbarComponent implements OnInit,OnDestroy{
       reverseButtons: true
     }).then((result) => {
       if (result.isConfirmed) {
+  
 
         this.logService.logout().subscribe(
          {
@@ -109,7 +108,7 @@ export class NavbarComponent implements OnInit,OnDestroy{
           timer: 800,
         }).then(
         ()=>{this.router.navigate(['/'])
-          window.location.reload()
+          //window.location.reload()
         }
         );
           },
@@ -117,7 +116,7 @@ export class NavbarComponent implements OnInit,OnDestroy{
             swalWithBootstrapButtons.fire({
               icon: "error",
               title: "Oops...Something went wrong!",
-              text: err.error,
+              text: JSON.stringify(err),
             });
             
           }
