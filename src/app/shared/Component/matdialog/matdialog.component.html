@@ -1,13 +1,12 @@
-
 <mat-dialog-content class="mat-typography">
     @if(logingFlag){
 
-       <app-login [RefMatDialog]="dialogRef"></app-login>
+    <app-login [RefMatDialog]="dialogRef"></app-login>
     }
 
     @else{
 
-        <app-signup (loginPage)="fromChild($event)"></app-signup>
+    <app-signup (loginPage)="fromChild($event)"></app-signup>
     }
 
 
@@ -17,22 +16,21 @@
 <mat-dialog-actions align="end" class="gap-x-4 py-10">
     <div>
         @if(logingFlag){
-            
-<div>
-          <p class="text-cyan-700 margin">Dont have an account yet? register <button (click)="toogle()" class=" text-indigo-400 hover:text-red-900 buttons "> here</button> please</p>   
-  </div>      
+
+        <div>
+            <p class="text-cyan-700 margin">Dont have an account yet? register <button (click)="toogle()"
+                    class=" text-indigo-400 hover:text-red-900 buttons "> here</button> please</p>
+        </div>
         }
         @else{
-          <div>
-            <p class="text-cyan-700 margin"> Already have an account? login <button (click)="toogle()" class=" text-indigo-400 hover:text-red-900 buttons"> here</button> please</p>   
+        <div>
+            <p class="text-cyan-700 margin"> Already have an account? login <button (click)="toogle()"
+                    class=" text-indigo-400 hover:text-red-900 buttons"> here</button> please</p>
         </div>
-          }
+        }
 
 
 
-</div>
- <!--[mat-dialog-close]="true" cdkFocusInitial>Install</button>-->
+    </div>
+    <!--[mat-dialog-close]="true" cdkFocusInitial>Install</button>-->
 </mat-dialog-actions>
-
-    
-    

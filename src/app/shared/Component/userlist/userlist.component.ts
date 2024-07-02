@@ -22,6 +22,7 @@ export class UserlistComponent implements OnInit {
   nextPage=signal('')
   url=''
   observer={next:(result:any)=>{
+   
    this.initItem.set(((result.current-1)*15)+1)
    this.totalItem.set(result.count)
    this.finalItem.set(((result.current-1)*15)+result.results.length)
@@ -31,6 +32,7 @@ export class UserlistComponent implements OnInit {
     this.users=undefined
    }
    else{
+  
        this.users=result.results 
    }
 
@@ -43,7 +45,7 @@ export class UserlistComponent implements OnInit {
  
  }
  
-  constructor(private likeService:LikeService,private commentService:CommentService){
+  constructor(private likeService:LikeService){
   }
 
 
@@ -53,7 +55,7 @@ export class UserlistComponent implements OnInit {
 
     }
 
-    this.url=this.random()
+   
   }
 
   back(){

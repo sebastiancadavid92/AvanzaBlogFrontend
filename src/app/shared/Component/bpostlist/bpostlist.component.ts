@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 
 
 export class BpostlistComponent implements OnInit{
- public bPostList?:[Post]|undefined=undefined;
+ public bPostList?:[Post]|undefined|[any]=undefined;
  initItem= signal(0)
  finalItem=signal(0)
  totalItem=signal(0)
@@ -37,7 +37,7 @@ export class BpostlistComponent implements OnInit{
   
   window.scrollTo({
     top: 0,
-    behavior: 'smooth' // Esto hace que el desplazamiento sea suave
+    behavior: 'smooth'
   })
 },
 error:(err:any)=>{
@@ -55,25 +55,16 @@ error:(err:any)=>{
       icon:'error',
       text:'We couldnt stablish conection to the server , try again later'
     })
-
-  }
-  
-  
+  } 
 }
 
 }
-
- 
 
  constructor(private postService:PostService){}
 
-
  ngOnInit(): void {
-  this.postService.listPost().subscribe(this.observer)
-
-   
+  this.postService.listPost().subscribe(this.observer)   
  }
-
 
  back(){
   this.postService.listPostPage(this.previousPage()).subscribe(this.observer)
@@ -82,10 +73,7 @@ error:(err:any)=>{
  next(){
   this.postService.listPostPage(this.nextPage()).subscribe(this.observer)
  }
-  
-
  postDelete(){
-  window.location.reload()
-
+  this.postService.listPost().subscribe(this.observer) 
  }
 }

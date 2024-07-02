@@ -13,8 +13,9 @@ import { authUser } from '../../models/user';
 
 describe('BpostComponent', () => {
   let component: BpostComponent;
+  let authServiceMock: jasmine.SpyObj<AuthService> 
   let postServiceMock: jasmine.SpyObj<PostService>;
-  let authServiceMock: jasmine.SpyObj<AuthService>
+
   let routerMock: jasmine.SpyObj<Router>
   let fixture: ComponentFixture<BpostComponent>;
   let ActiverouterMock: jasmine.SpyObj<ActivatedRoute>

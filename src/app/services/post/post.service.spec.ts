@@ -9,6 +9,7 @@ import { Comment, newPost } from '../../shared/models/post';
 describe('PostService', () => {
   let service: PostService;
   let controller:HttpTestingController;
+  
   const data:newPost={
     title: 'test tittle',
     content:'Content test',

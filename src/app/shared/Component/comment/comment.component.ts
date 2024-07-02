@@ -1,5 +1,5 @@
 
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 
 import { Comment } from '../../models/post';
@@ -11,15 +11,17 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.css'
 })
-export class CommentComponent implements OnChanges {
+export class CommentComponent {
 
 
   @Input({required:true}) comment?:Comment|undefined;
+  @Output() del=new EventEmitter()
 
-  ngOnChanges(changes: SimpleChanges): void {
-   
-    
+  delete(){
+    this.del.emit(this.comment?.id)
   }
+
+
 
 
 }

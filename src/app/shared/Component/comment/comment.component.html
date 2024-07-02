@@ -7,7 +7,6 @@
             
             </mat-card-subtitle>
             
-            
           </mat-card-header>
           <div class="flex flex-row items-center justify-between m-2">
             <div class="flex items-center gap-3 ">
@@ -26,8 +25,14 @@
               </div>
 
             </div>
-            
-            
+            @if(comment?.delete){
+
+            <div class="mr-5">
+              <button (click)="delete()">
+                <img src="../../../../assets/icons/delete.svg" alt="">
+              </button>
+            </div>
+            }
           </div>
     <hr>
       <mat-card-content >
@@ -36,9 +41,6 @@
           <p class="pt-2 text-indigo-900" >{{comment?.content}}</p>
         </div>
 
-      
-  
-     
       </mat-card-content>
   
       <hr>

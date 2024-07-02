@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { Component, EventEmitter,Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-paginator',
@@ -15,19 +15,14 @@ export class PaginatorComponent {
   @Input({required:true}) nextPage:string='';
   @Input({required:true}) previousPage:string='';
 
-
   @Output() next= new EventEmitter();
   @Output() back=new EventEmitter();
-
-
-
 
 
   backHandler(){
     this.back.emit()
 
   }
-
 
   nextHandler(){
     this.next.emit()

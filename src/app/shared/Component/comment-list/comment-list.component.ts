@@ -5,6 +5,7 @@ import { Comment } from '../../models/post';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { PaginatorComponent } from '../paginator/paginator.component';
+import { jsDocComment } from '@angular/compiler';
 
 @Component({
   selector: 'app-comment-list',
@@ -25,6 +26,7 @@ export class CommentListComponent implements OnInit,OnChanges{
   nextPage=signal('')
  
   observer={next:(result:any)=>{
+
    this.initItem.set(((result.current-1)*5)+1)
    this.totalItem.set(result.count)
    this.finalItem.set(((result.current-1)*5)+result.results.length)
@@ -34,35 +36,22 @@ export class CommentListComponent implements OnInit,OnChanges{
 
  },
  error:(error:any)=>{
-  console.log(error)
     Swal.fire(
     {
       icon: "error",
       title: "Oops...",
-      text: error.error.detail,
+      text: JSON.stringify(error),
     }
 
 
     ).then((result)=>{
-      this.router.navigate(['/'])
+    this.router.navigate(['/'])
       
     })
  }
  
  }
  
-
-
-
-
-
- comment= {
-    id: 2,
-    username: "Username0",
-    post: "updated title",
-    content: "Morning full assume now culture. Weight run probably budget local your. Husband language between able really fast.",
-    timestamp: "2024-04-22 00:00",
-}
 
 constructor(private commentService:CommentService, private router:Router){}
 
@@ -78,8 +67,6 @@ ngOnChanges(changes: SimpleChanges): void {
     this.commentService.listComments(this.postId).subscribe(this.observer)
   }
 
-
-
 }
 
 back(){
@@ -90,6 +77,29 @@ back(){
   this.commentService.listCommentsPage(this.nextPage()).subscribe(this.observer)
  }
 
+delete(event:any){
+  if(this.postId){
+    this.commentService.deleteComment(this.postId,event).subscribe(
+      {
+        next:()=>{Swal.fire({icon:'success',title:'comment deleted successfuly'}).then(
+          ()=>{
+            if(this.postId)
+            this.commentService.listComments(this.postId).subscribe(this.observer)
+          }
+        )
+      
+      },
+        error:(err)=>{
+          Swal.fire({icon:'warning',title:'Ooops Something wrong happened',text:JSON.stringify(err)})
+        }
 
+      }
+      );
+      
+    
+      
+    
+  }
+}
 
 }

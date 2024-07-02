@@ -8,7 +8,7 @@
             @for (comment of commentList; track comment.id){
               <div>
       
-              <app-comment [comment]="comment"></app-comment>
+              <app-comment (del)="delete($event)" [comment]="comment"></app-comment>
               </div>
                   }
         </div>

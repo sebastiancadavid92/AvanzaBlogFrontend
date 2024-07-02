@@ -40,5 +40,6 @@ export interface Comment{
     username: string,
     content:string;
     timestamp: string;
+    delete:boolean;
 }
 

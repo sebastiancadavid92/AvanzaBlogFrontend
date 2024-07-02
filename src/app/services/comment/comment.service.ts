@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EnvironmentInjector, Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http'
 import{environment} from'../../../environments/environment'
 
@@ -16,7 +16,9 @@ export class CommentService {
   }
   listCommentsPage(url:string){
     return this.http.get(url,{withCredentials:true})
-
+  }
+  deleteComment(postId:number,commentId:number){
+    return this.http.delete(`${environment.URLAPI}post/${postId}/comment/${commentId}`,{withCredentials:true})
   }
 
 

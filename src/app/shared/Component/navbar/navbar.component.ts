@@ -22,7 +22,10 @@ export class NavbarComponent implements OnInit,OnDestroy{
   public user:authUser|null=null;
   private Userwathcer?:Subscription;
 
-  constructor(public dialog: MatDialog, private authserv:AuthService, private logService:LoginService,private router:Router) {
+  constructor(public dialog: MatDialog,
+     private authserv:AuthService, 
+    private logService:LoginService,
+    private router:Router) {
 
 
   }

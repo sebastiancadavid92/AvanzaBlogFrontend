@@ -36,7 +36,7 @@ export class NewCommentComponent implements OnChanges{
     if (this.commentContent.valid){
       this.postService.commentPost(this.postId,{content:this.commentContent.value})?.subscribe({
         next:()=>{
-          window.location.reload()
+          this.reloadPage()
         }
       })
        
@@ -48,4 +48,12 @@ export class NewCommentComponent implements OnChanges{
    
   
   }
+
+
+  reloadPage() {
+    window.location.reload();
+  }
+
+
+
 }
