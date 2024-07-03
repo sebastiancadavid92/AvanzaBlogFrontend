@@ -1,11 +1,12 @@
 <mat-dialog-content class="mat-typography">
     @if(logingFlag){
-
+     
+            
     <app-login [RefMatDialog]="dialogRef"></app-login>
     }
 
     @else{
-
+        
     <app-signup (loginPage)="fromChild($event)"></app-signup>
     }
 

@@ -48,6 +48,10 @@ export class DetailPostComponent implements OnInit{
     }
   }
 
+  deletePost(){
+    this.router.navigate(['/'])
+  }
+
   ngOnInit(): void {
 
     this.user=this.authService.getUser()
@@ -60,7 +64,7 @@ export class DetailPostComponent implements OnInit{
 
       },
       error:(error)=>{
-        console.log(error)
+
         Swal.fire(
         {
           icon: "error",

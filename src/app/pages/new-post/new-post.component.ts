@@ -82,7 +82,7 @@ this.postService.newPost(data).subscribe({next:()=>{
           icon: "error",
           title: "Oops...",
           text: error.status==0? "The API is not resonding" :JSON.stringify(error),        })
-        console.log(error)
+  
 
     }}) 
 

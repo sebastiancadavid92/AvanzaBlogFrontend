@@ -17,21 +17,21 @@ export const routes: Routes = [
         children:[
             {
                 path:'',
-                component:HomeComponent
+                loadComponent:()=>import('./pages/home/home.component').then((c)=>c.HomeComponent)
             }
             ,
 
             {
                 path:'edit/:id',
-                component:EditPostComponent
+                loadComponent:()=>import('./pages/edit-post/edit-post.component').then((c)=>c.EditPostComponent)
             },
             {
                 path:'post/:id',
-                component:DetailPostComponent
+                loadComponent:()=>import('./pages/detail-post/detail-post.component').then((c)=>c.DetailPostComponent)
             },
             {
                 path:'newpost',
-                component: NewPostComponent
+                loadComponent:()=>import('./pages/new-post/new-post.component').then((c)=>c.NewPostComponent)
             }
 
 

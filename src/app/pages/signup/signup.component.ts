@@ -140,8 +140,6 @@ userNameValidator(){
     }
     const data=this.registerform.value;
     this.SignupServ.register(data).subscribe({next:response => {
-      console.log("exito. respuesta:")
-      console.log( response);
       swal.fire({
         icon: "success",
         title: "New user registered successfully",
@@ -152,8 +150,6 @@ userNameValidator(){
       this.registerform.reset();
 
     }, error:error => {
-      console.log("error:")
-      console.log(error.error)
       console.error('Error al enviar los datos:', error);
       swal.fire({
         icon: "error",

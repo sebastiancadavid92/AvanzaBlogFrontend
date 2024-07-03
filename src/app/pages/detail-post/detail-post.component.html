@@ -12,7 +12,7 @@
       <button (click)="back()" >
       <img class="fixed-button" src="../../../assets/icons/backpage.svg" alt="">
     </button>
-    <app-bpost [bPost]="this.bPost" [detail]="true"> </app-bpost>
+    <app-bpost [bPost]="this.bPost" [detail]="true" (deletePost)="deletePost()"> </app-bpost>
   </div>
 
 

@@ -88,7 +88,6 @@ ngOnInit(): void {
     this.initCategories(this.categories.length)
   },
   error:(error)=>{
-    console.log(error)
     Swal.fire({
       
       icon: "error",

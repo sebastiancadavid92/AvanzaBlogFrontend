@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit,OnDestroy{
   renderDialog(obj:{login:boolean}){
     const dialogRef = this.dialog.open(MatdialogComponent,{data:obj});
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+
     });
     this.user=this.authserv.getUser()
   }
@@ -108,7 +108,7 @@ export class NavbarComponent implements OnInit,OnDestroy{
           timer: 800,
         }).then(
         ()=>{this.router.navigate(['/'])
-          //window.location.reload()
+          window.location.reload()
         }
         );
           },
